@@ -1,0 +1,6 @@
+<h1>Welcome to EERIS-06</h1>
+
+<form action="{% url 'app:logout' %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-link">Logout</button>
+</form>
