@@ -8,6 +8,7 @@
    background-color: rgb(133, 58, 133);
    font-size: 1.2em;
    color: white;
+   margin-bottom: 6px;
 }
 
 .auth-card button:hover{

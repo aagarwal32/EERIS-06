@@ -16,15 +16,15 @@ EERIS-06 | Register User
                 <div class="auth-card">
                     <div class="mb-2">
                         <h6>First name:</h6>
-                        <input type="text" name="first_name" maxlength="150" autocapitalize="none" required autofocus>
+                        {{ form.first_name }}
                     </div>
                     <div class="mb-2">
                         <h6>Last name:</h6>
-                        <input type="text" name="last_name" maxlength="150" autocapitalize="none" required>
+                        {{ form.last_name }}
                     </div>
                     <div class="mb-2">
                         <h6>Email:</h6>
-                        {{ form.username }}
+                        {{ form.email }}
                     </div>
                     <div class="mb-2">
                         <h6>Password: </h6>
