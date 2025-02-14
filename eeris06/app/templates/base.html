@@ -1,4 +1,5 @@
 {% load static %}
+{% load django_bootstrap5 %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,15 +7,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} EERIS-06 {% endblock %}</title>
-
-    {% load django_bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 <body>
     <header>
-        <!-- Navigation bar (if needed) -->
+      {% if user.is_authenticated %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">EERIS-06</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'app:home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link 2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link 3</a>
+                        </li>
+                        <form action="{% url 'app:logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button class="btn btn-danger navbar-btn">Logout</button>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </nav>        
+      {% endif %}
     </header>
 
     <main class="container">

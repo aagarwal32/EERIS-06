@@ -1,6 +1,9 @@
-<h1>Welcome to EERIS-06</h1>
+{% extends "base.html" %}
 
-<form action="{% url 'app:logout' %}" method="post" style="display: inline;">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-link">Logout</button>
-</form>
+{% block title %}
+EERIS-06 | Home
+{% endblock %}
+
+{% block content %}
+<h1>Welcome to Home page!</h1>
+{% endblock %}
