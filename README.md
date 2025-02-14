@@ -6,3 +6,11 @@
 4. After making any DB or Model changes, always run **python manage.py makemigrations** and **python manage.py migrate**.
 5. If you added any dummy data for testing, run **python manage.py dumpdata > data.json** before pushing repo.
    - Others can load that dummy data into their local sqlite by running **python manage.py loaddata data.json**.
+
+## User Testing Accounts Created
+
+### Regular Employee Accounts
+1. TestUser@gmail.com, Test12345*
+
+### Supervisor Accounts
+1. Group06@gmail.com, 42c43d496715369f6ba1

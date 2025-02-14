@@ -15,16 +15,16 @@ EERIS-06 | Register User
                 {% csrf_token %}
                 <div class="auth-card">
                     <div class="mb-2">
+                        <h6>Email:</h6>
+                        {{ form.email }}
+                    </div>
+                    <div class="mb-2">
                         <h6>First name:</h6>
                         {{ form.first_name }}
                     </div>
                     <div class="mb-2">
                         <h6>Last name:</h6>
                         {{ form.last_name }}
-                    </div>
-                    <div class="mb-2">
-                        <h6>Email:</h6>
-                        {{ form.email }}
                     </div>
                     <div class="mb-2">
                         <h6>Password: </h6>
@@ -36,6 +36,9 @@ EERIS-06 | Register User
                     </div>
                     
                     <button type="submit" class="btn w-100">Sign Up</button>
+                    <h6>Have an account?
+                        <a href="{% url 'app:login' %}">Login</a>
+                    </h6>
                 </div>
             </form>
         </div>
