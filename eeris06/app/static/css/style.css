@@ -1,0 +1,23 @@
+/* login and signup template styles */
+
+.logo-color {
+    color: rgb(129, 43, 129);
+}
+
+.auth-card button{
+   background-color: rgb(133, 58, 133);
+   font-size: 1.2em;
+   color: white;
+}
+
+.auth-card button:hover{
+    background-color: purple;
+    color: white;
+}
+
+.auth-card input {
+    width: 100%;
+    border: solid 1px black;
+    border-radius: 3px;
+    padding: 5px 5px;
+}

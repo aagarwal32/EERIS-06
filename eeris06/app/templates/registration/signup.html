@@ -1,14 +1,43 @@
 {% extends "base.html" %}
 
 {% block title %}
-EERIS-06 | Register
+EERIS-06 | Register User
 {% endblock %}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{form}}
-
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-    </form>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 shadow-lg" style="width: 500px;">
+            
+            <h1 class="text-center mb-4 logo-color">Let's get started!</h1>
+            <h4 class="text-center mb-4 logo-color">Create Account</h4>
+            
+            <form method="POST">
+                {% csrf_token %}
+                <div class="auth-card">
+                    <div class="mb-2">
+                        <h6>First name:</h6>
+                        <input type="text" name="first_name" maxlength="150" autocapitalize="none" required autofocus>
+                    </div>
+                    <div class="mb-2">
+                        <h6>Last name:</h6>
+                        <input type="text" name="last_name" maxlength="150" autocapitalize="none" required>
+                    </div>
+                    <div class="mb-2">
+                        <h6>Email:</h6>
+                        {{ form.username }}
+                    </div>
+                    <div class="mb-2">
+                        <h6>Password: </h6>
+                        {{ form.password1 }}
+                    </div>
+                    <div class="mb-4">
+                        <h6>Retype Password: </h6>
+                        {{ form.password2 }}
+                    </div>
+                    
+                    <button type="submit" class="btn w-100">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
