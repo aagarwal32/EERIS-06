@@ -352,11 +352,27 @@
   }
 },
 {
+  "model": "sessions.session",
+  "pk": "mq8e4sxga9nstmbkwo95rkppkchhp3pa",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1tjNaM:K28VTcpGiS4Sx78lFLm4rrvAbriwi5rP4Iw3-jCGedQ",
+    "expire_date": "2025-03-01T19:12:18.947Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "q3cov82x3gh9ldm4v6sgdta72sxorbrm",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1tjMwa:XoyA1xDTh81DhtLPI4-DMe8jX8yFmnygMZmFtk7OHu8",
+    "expire_date": "2025-03-01T18:31:12.902Z"
+  }
+},
+{
   "model": "app.customuser",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$870000$XGeK0saP1AHSPxktx0JGu5$OaoUZgJlQdeVI8E21urZtmDi6UzgQtNJAkgoh3hUKok=",
-    "last_login": "2025-02-15T14:19:48.518Z",
+    "last_login": "2025-02-15T19:12:18.946Z",
     "is_superuser": false,
     "is_staff": false,
     "is_active": true,
@@ -396,6 +412,16 @@
   }
 },
 {
+  "model": "app.submission",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "receipt": 2,
+    "approved": false,
+    "created_at": "2025-02-15T18:17:23.136Z"
+  }
+},
+{
   "model": "app.receipt",
   "pk": 1,
   "fields": {
@@ -408,6 +434,21 @@
     "line_items": "item 1: Eggs, quantity: 3, price: $8.99\r\nitem 2: Chicken, quantity: 1, price: $6\r\nitem 3: Rice, quantity: 2, price: $20.11",
     "total_payment": "35.10",
     "pay_method": "Credit Card"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 2,
+  "fields": {
+    "receipt_name": "fang-receipt-1",
+    "store_name": "Fang's Club",
+    "store_phone": "0101001100",
+    "store_address": "Fang Ave., FangCity, Florida, 33217",
+    "store_site": "https://usflearn.instructure.com/courses/1936606/pages/term-project-general-description-and-common-requirements?module_item_id=39271767",
+    "created_at": "2025-02-15T18:17:23.135Z",
+    "line_items": "item 1: EERIS-06, quantity: 1, price: $0",
+    "total_payment": "0.00",
+    "pay_method": "Cash"
   }
 }
 ]
