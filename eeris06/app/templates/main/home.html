@@ -1,9 +1,128 @@
 {% extends "base.html" %}
-
 {% block title %}
 EERIS-06 | Home
 {% endblock %}
 
 {% block content %}
-<h1>Welcome to Home page!</h1>
+<h1 class="mt-2">{{request.user.first_name}}'s Dashboard</h1>
+<hr>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<button id="toggleReceiptForm" type="button" class="btn btn-success mb-2 mt-4" style="display: block;"><i class="bi bi-plus-lg"></i> New Receipt</button>
+
+<form id="createReceiptForm" action="{% url 'app:create_receipt' %}" method="post" novalidate>
+    {% csrf_token %}
+
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn-close mb-2" id="cancelReceiptForm" aria-label="Close"></button>
+    </div>
+
+    {% for field in receipt_form %}
+        <div class="mb-2">
+
+            {% if field.errors %}
+                <div class="text-danger">
+                    {% for error in field.errors %}
+                        <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {{ field }}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success mb-2 mt-3"><i class="bi bi-upload"></i> Create Receipt</button>  
+</form>
+
+<h2 class="mt-4">All Submissions ({{latest_submissions_list|length}})</h2>
+<hr>
+
+<div class="submissions-container mb-4">
+    {% if latest_submissions_list %}
+        {% for submission in latest_submissions_list %}
+        <div class="d-flex submission-item justify-content-between align-items-center" style="gap: 12px;">
+            <div class="name">Submission for <span style="color: darkblue;">{{submission.receipt.receipt_name|truncatechars:20}}</span></div>
+            <div class="user">By {{submission.user.first_name}} {{submission.user.last_name}}</div>
+            <div class="receipt"><button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewReceiptModal{{submission.id}}"><i class="bi bi-file-text"></i> View Receipt</button></div>
+            <div class="date">At {{submission.created_at}}</div>
+
+            <div class="approval">
+                {% if not submission.approved %}
+                Pending approval
+                {% else %}
+                Approved
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+
+        <div class="modal fade" id="viewReceiptModal{{submission.id}}" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title" id="viewReceiptModalLabel{{submission.id}}">Receipt: {{submission.receipt.receipt_name}}</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div><strong>Store:</strong> {{ submission.receipt.store_name }}</div>
+                        <div><strong>Phone:</strong> {{ submission.receipt.store_phone }}</div>
+                        <div><strong>Address:</strong> {{ submission.receipt.store_address }}</div>
+
+                        {% if submission.receipt.store_site %}
+                            <div><strong>Website:</strong> <a href="{{ submission.receipt.store_site }}" target="_blank">{{ submission.receipt.store_site }}</a></div>
+                        {% endif %}
+
+                        {% if submission.receipt.line_items %}
+                            <div><strong>Items:</strong> {{ submission.receipt.line_items }}</div>
+                        {% endif %}
+
+                        <div><strong>Total Payment:</strong> ${{ submission.receipt.total_payment }}</div>
+                        <div><strong>Payment Method:</strong> {{ submission.receipt.pay_method }}</div>
+                        <div><strong>Created At:</strong> {{ submission.receipt.created_at|date:"F d, Y H:i" }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+    No submissions yet. Submit your first receipt by clicking "New Receipt"!
+    {% endif %}
+</div>
+
+
+<script>
+    const receiptForm = document.getElementById('createReceiptForm');
+    const toggleReceiptFormButton = document.getElementById('toggleReceiptForm');
+
+    // show form on errors
+    if (receiptForm.querySelector('.text-danger')) {
+        receiptForm.style.display = "block";
+        toggleReceiptFormButton.style.display = "none";
+    }
+
+    // toggle form when adding new receipt
+    toggleReceiptFormButton.addEventListener("click", function(){
+        if (receiptForm.style.display === "block") {
+            receiptForm.style.display = "none";
+        } else {
+            receiptForm.style.display = "block";
+            toggleReceiptFormButton.style.display = "none";
+        }
+    });
+
+    // cancel and hide receipt form
+    document.getElementById('cancelReceiptForm').addEventListener("click", function(){
+        receiptForm.style.display = "none";
+        toggleReceiptFormButton.style.display = "block";
+    });
+</script>
+
 {% endblock %}
