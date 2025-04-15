@@ -1,5 +1,18 @@
 [
 {
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-04-15T22:33:42.343Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "Submission by TestUser@gmail.com on 2025-02-15 18:17:23",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Approved\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -353,6 +366,54 @@
 },
 {
   "model": "sessions.session",
+  "pk": "1k8q3rzew9pz85wxyxh34f4bqgfq2d9e",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1u4VF7:TiDbNHywnqCS4iNf2ldsx2K07YRf3yAz_-H0r_29F0Q",
+    "expire_date": "2025-04-29T01:37:41.983Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2oo53tqfuge24y3jjrpfde0thss2ylbg",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1u4VXA:dUBfEeSXg9Ht89vw8PEt7eBdrjLSk2Ps-jzvHNMU228",
+    "expire_date": "2025-04-29T01:56:20.013Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7quv7ckrc5euvvlk604gm9ci1tuk9dzm",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBoB0Zcuu8ZmoGZStVAUtqV8e7apAvd_vfef6mRtjWPW5NlnFldVKdOv1uk9JCyA75TuVWdalmXOepd0Qdteqgsz-vh_h1kavlbo_OCjNYBQycQvZCNIcFENnhD6EzPLtoQU39GMZCcSALrDNoAU0D1_gDbqDd7:1u4pFo:EnVP3PcNA_c98pKAZpMYvpmM4A7pKHxMAAY-lFeZZXs",
+    "expire_date": "2025-04-29T22:59:44.503Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ie8ylc7g45x811invdguacdxybj543ne",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1u4ijk:cAd54Jsa5Jk4tF-SC4H3WjWT7OT5NPbh_uzN1ZslrIk",
+    "expire_date": "2025-04-29T16:02:12.324Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "laudd70gign57n1ez32lpj69gj5d64qa",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1tve4o:aOcDvOku5vWGmU-E531u8OBjGOjFGqMKBDs_iHe0_CM",
+    "expire_date": "2025-04-04T15:14:26.628Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lp8enasqj5vmx5z8m0tek8lr8xhlisae",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1u4otT:sZGYnYdTf4KHrUDceI_iyVjgCVfjPcBqoDs5rBCpECQ",
+    "expire_date": "2025-04-29T22:36:39.591Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "mq8e4sxga9nstmbkwo95rkppkchhp3pa",
   "fields": {
     "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1tjNaM:K28VTcpGiS4Sx78lFLm4rrvAbriwi5rP4Iw3-jCGedQ",
@@ -372,7 +433,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$870000$XGeK0saP1AHSPxktx0JGu5$OaoUZgJlQdeVI8E21urZtmDi6UzgQtNJAkgoh3hUKok=",
-    "last_login": "2025-02-15T19:12:18.946Z",
+    "last_login": "2025-04-15T22:36:39.587Z",
     "is_superuser": false,
     "is_staff": false,
     "is_active": true,
@@ -389,7 +450,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$870000$y01WeDNkxboV5UywijZWPD$aukdvUZzjYSDgJAFdW8G4X6rqisYeeVGVa5t+D5/vY8=",
-    "last_login": "2025-02-15T14:35:51.486Z",
+    "last_login": "2025-04-15T22:59:44.498Z",
     "is_superuser": true,
     "is_staff": true,
     "is_active": true,
@@ -417,7 +478,7 @@
   "fields": {
     "user": 1,
     "receipt": 2,
-    "approved": false,
+    "approved": true,
     "created_at": "2025-02-15T18:17:23.136Z"
   }
 },
@@ -425,9 +486,9 @@
   "model": "app.receipt",
   "pk": 1,
   "fields": {
-    "receipt_name": "untitled-receipt-20250215092012",
-    "store_name": "Walmart",
-    "store_phone": "8138737892",
+    "receipt_name": "Fang Stores - R1",
+    "store_name": "Fang Stores",
+    "store_phone": "8138737890",
     "store_address": "Fang O Lakes, Fang Street, FL 33543",
     "store_site": "http://walmart.com",
     "created_at": "2025-02-15T14:23:43.565Z",

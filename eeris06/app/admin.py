@@ -7,8 +7,10 @@ class CustomUserAdmin(admin.ModelAdmin):
     search_fields = ['email','first_name','last_name']
     ordering = ['-date_joined']  # newest accounts first
     show_facets = admin.ShowFacets.ALWAYS
+@admin.register(Submission)
+class SubmissionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'receipt', 'approved', 'created_at')
 
-admin.site.register(Submission)
 admin.site.register(Receipt)
 
 

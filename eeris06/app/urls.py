@@ -9,4 +9,5 @@ urlpatterns = [
     path('receipt/', views.CreateReceiptView.as_view(), name="create_receipt"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', views.authUserRegister, name='authUserRegister'),
+    path('edit/<int:submission_id>', views.editSubmission, name='editSubmission'),
 ]

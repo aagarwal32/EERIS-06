@@ -25,6 +25,34 @@ def authUserRegister(request):
 
     return render(request, 'registration/signup.html', {'form': form})
 
+@login_required
+def editSubmission(request, submission_id=None):
+
+    submission = Submission.objects.get(id=submission_id)
+
+    # Check if the submission has not been approved
+    if submission.approved:
+        messages.warning(request, "Submission cannot be modified! It has been already approved. Contact your supervisor if needed.")
+        return redirect("app:home")
+
+    # Use the Submission's receipt instance for editing
+    receipt_instance = submission.receipt
+
+    if request.method == 'POST':
+        form = ReceiptForm(request.POST, instance=receipt_instance)
+        if form.is_valid():
+            form.save()  # Updates the receipt in the database
+            messages.success(request, "Submission updated successfully.")
+            return redirect("app:home")
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        # prefill the form with existing data of the receipt
+        form = ReceiptForm(instance=receipt_instance)
+
+
+    return render(request, 'main/edit_submission.html', { 'form': form, 'submission': submission })
+
 
 class HomeView(LoginRequiredMixin, ListView):
     template_name = "main/home.html"

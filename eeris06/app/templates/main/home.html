@@ -27,7 +27,8 @@ EERIS-06 | Home
 
     {% for field in receipt_form %}
         <div class="mb-2">
-
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+            
             {% if field.errors %}
                 <div class="text-danger">
                     {% for error in field.errors %}
@@ -87,6 +88,17 @@ EERIS-06 | Home
                         <div><strong>Total Payment:</strong> ${{ submission.receipt.total_payment }}</div>
                         <div><strong>Payment Method:</strong> {{ submission.receipt.pay_method }}</div>
                         <div><strong>Created At:</strong> {{ submission.receipt.created_at|date:"F d, Y H:i" }}</div>
+                        {% if not submission.approved %}
+                        <br />
+                        <div class="edit">
+                            <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-warning">
+                                Edit <i class="bi bi-pen"></i>
+                            </a>
+                            <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-outline-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

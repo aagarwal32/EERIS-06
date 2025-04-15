@@ -19,6 +19,17 @@ class ReceiptForm(forms.ModelForm):
         model = Receipt
         fields = ["receipt_name", "store_name", "store_phone", "store_address", "store_site", "line_items", "total_payment", "pay_method"]
 
+        labels = {
+            "receipt_name": "Receipt Name",
+            "store_name": "Store Name",
+            "store_phone": "Store Phone",
+            "store_address": "Store Address",
+            "store_site": "Store Website",
+            "line_items": "Line Items Description",
+            "total_payment": "Total Payment",
+            "pay_method": "Payment Method",
+        }
+
         widgets = {
             'receipt_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter receipt name (e.g., walmart-receipt-01)'}),
             'store_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter store name (e.g., walmart)'}),

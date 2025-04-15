@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+EERIS-06 | Home
+{% endblock %}
+
+{% block content %}
+<h1 class="mt-2">{{request.user.first_name}}'s Dashboard - Editing {{submission.receipt.receipt_name|truncatechars:20}}</h1>
+<hr />
+
+<form id="editReceiptForm" action="{% url 'app:editSubmission' submission.id %}" method="post" novalidate>
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="mb-2">
+            <label for="{{ field.id_for_label }}" class="form-label"><b>{{ field.label }}</b></label>
+            {% if field.errors %}
+                <div class="text-danger">
+                    {% for error in field.errors %}
+                        <small>{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {{ field }}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success mb-2 mt-3"><i class="bi bi-upload"></i> Submit Changes</button>  
+</form>
+
+{% endblock %}
