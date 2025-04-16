@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+EERIS-06 | Report & Analytics
+{% endblock %}
+
+
+{% block content %}
+
+<h2 class="mt-4">Processed Submissions Report</h2>
+<hr />
+{% include "components/report_template.html" with data=data  %}
+
+{% endblock %}

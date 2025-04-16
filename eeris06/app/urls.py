@@ -12,4 +12,5 @@ urlpatterns = [
     path('edit/<int:submission_id>', views.editSubmission, name='editSubmission'),
     path('delete/<int:submission_id>', views.deleteSubmission, name='deleteSubmission'),
     path('process/<int:submission_id>/<str:approve>', views.processSubmission, name='processSubmission'),
+    path('report-analytics/', views.reportAnalytics, name='reportAnalytics'),
 ]

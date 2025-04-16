@@ -96,6 +96,30 @@ def processSubmission(request, submission_id=None, approve=None):
         
     return redirect("app:home")
 
+@login_required
+def reportAnalytics(request):
+
+    def total(qset):
+        return sum([submission.receipt.total_payment for submission in qset])
+    
+    context = {}
+    
+    all_submissions = Submission.objects.filter(processed=True)
+    
+    for category in Receipt.CATEGORY_CHOICES:
+        context[category[1]] = {
+            'Approved Expenses': total(all_submissions.filter(approved=True, receipt__expense_category=category[0])),
+            'Declined Expenses': total(all_submissions.filter(approved=False, receipt__expense_category=category[0])),
+        }
+        context[category[1]]['Total'] = context[category[1]]['Approved Expenses'] + context[category[1]]['Declined Expenses']
+
+    print()
+    print(context)
+    print()
+
+    return render(request, 'main/report_analytics.html', {'data':context})
+
+
 
 class HomeView(LoginRequiredMixin, ListView):
     template_name = "main/home.html"

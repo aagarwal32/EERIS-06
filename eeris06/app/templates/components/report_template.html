@@ -1,0 +1,19 @@
+<div class="submissions-container d-flex flex-wrap gap-3 mb-4">
+    {% for category, totals in data.items %}
+    <div class="card p-2" style="max-width: 300px; flex: 0 1 auto;">
+        <div class="card-body">
+            <div class="card-title">
+                <h4>
+                   {{ category }}
+                </h4>
+            </div>
+            <hr />
+            <div class="container px-0">
+                {% for key, value in totals.items %}
+                    <p class="mb-1"><strong>{{ key }}:</strong> ${{ value }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
