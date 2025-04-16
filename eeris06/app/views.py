@@ -53,6 +53,22 @@ def editSubmission(request, submission_id=None):
 
     return render(request, 'main/edit_submission.html', { 'form': form, 'submission': submission })
 
+def deleteSubmission(request, submission_id=None):
+    submission = Submission.objects.get(id=submission_id)
+
+    # Check if the submission has not been approved
+    if submission.approved:
+        messages.warning(request, "Submission cannot be deleted! It has been already approved. Contact your supervisor if needed.")
+
+    # Delete the submission and its linked receipt
+    elif request.method == 'POST':
+        receipt_name = submission.receipt.receipt_name
+        submission.receipt.delete()  # Deletes the linked receipt
+        submission.delete()  # Deletes the submission itself
+        messages.success(request, f"Submission {receipt_name} deleted successfully.")
+    
+    return redirect("app:home")
+
 
 class HomeView(LoginRequiredMixin, ListView):
     template_name = "main/home.html"

@@ -28,7 +28,7 @@ EERIS-06 | Home
     {% for field in receipt_form %}
         <div class="mb-2">
             <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-            
+
             {% if field.errors %}
                 <div class="text-danger">
                     {% for error in field.errors %}
@@ -52,7 +52,15 @@ EERIS-06 | Home
         <div class="d-flex submission-item justify-content-between align-items-center" style="gap: 12px;">
             <div class="name" style="width: 320px;">Submission for <span class="text-success">{{submission.receipt.receipt_name|truncatechars:20}}</span></div>
             <div class="user" style="width: 100px;">By {{submission.user.first_name}} {{submission.user.last_name}}</div>
-            <div class="receipt"><button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewReceiptModal{{submission.id}}"><i class="bi bi-file-text"></i> View Receipt</button></div>
+            <div class="receipt">
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewReceiptModal{{submission.id}}"><i class="bi bi-file-text"></i> View Receipt</button>
+                {% if not submission.approved %}
+                 <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-outline-primary">
+                    Edit <i class="bi bi-pen"></i> 
+                 </a>
+                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteReceiptModal{{submission.id}}"> <i class="bi bi-trash"></i></button>
+                {% endif %}
+            </div>
             <div class="date" style="width: 200px;">At {{submission.created_at}}</div>
 
             <div class="approval" style="width: 200px; text-align: end;">
@@ -63,7 +71,7 @@ EERIS-06 | Home
                 {% endif %}
             </div>
         </div>
-        <hr>
+        <hr />
 
         <div class="modal fade" id="viewReceiptModal{{submission.id}}" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
@@ -88,21 +96,39 @@ EERIS-06 | Home
                         <div><strong>Total Payment:</strong> ${{ submission.receipt.total_payment }}</div>
                         <div><strong>Payment Method:</strong> {{ submission.receipt.pay_method }}</div>
                         <div><strong>Created At:</strong> {{ submission.receipt.created_at|date:"F d, Y H:i" }}</div>
-                        {% if not submission.approved %}
-                        <br />
-                        <div class="edit">
-                            <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-warning">
-                                Edit <i class="bi bi-pen"></i>
-                            </a>
-                            <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-outline-danger">
-                                <i class="bi bi-trash"></i>
-                            </a>
-                        </div>
-                        {% endif %}
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
+
+        
+{% if not submission.approved %}
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteReceiptModal{{ submission.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ submission.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel{{ submission.id }}">Confirm Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <div class="modal-body">
+          Are you sure you want to delete the submission <strong>{{ submission.receipt.receipt_name }}</strong>?
+        </div>
+  
+        <div class="modal-footer">
+          <form action="{% url 'app:deleteSubmission' submission.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+          </form>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  {% endif %}
         {% endfor %}
     {% else %}
     No submissions yet. Submit your first receipt by clicking "New Receipt"!
