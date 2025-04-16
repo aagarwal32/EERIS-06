@@ -54,6 +54,7 @@ class Submission(models.Model):
         )
     
     approved = models.BooleanField(default=False)
+    processed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

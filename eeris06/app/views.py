@@ -53,6 +53,7 @@ def editSubmission(request, submission_id=None):
 
     return render(request, 'main/edit_submission.html', { 'form': form, 'submission': submission })
 
+@login_required
 def deleteSubmission(request, submission_id=None):
     submission = Submission.objects.get(id=submission_id)
 
@@ -67,6 +68,32 @@ def deleteSubmission(request, submission_id=None):
         submission.delete()  # Deletes the submission itself
         messages.success(request, f"Submission {receipt_name} deleted successfully.")
     
+    return redirect("app:home")
+
+@login_required
+def processSubmission(request, submission_id=None, approve=None):
+    if request.method == 'POST' and request.user.is_superuser:
+        submission = Submission.objects.get(id=submission_id)
+
+        if submission.processed:
+            messages.warning(request, "Submission already processed.")
+            return redirect("app:home")
+        
+        if approve == "true":
+            submission.approved = True
+            submission.processed = True
+            messages.success(request, f"Submission {submission.receipt.receipt_name} approved.")
+        elif approve == "false":
+            submission.approved = False
+            submission.processed = True
+            messages.warning(request, f"Submission {submission.receipt.receipt_name} declined.")
+        else:
+            messages.warning(request, "Invalid action.")
+
+        submission.save()
+    else:
+        messages.warning(request, "Invalid action. You are not authorized to perform this action.")
+        
     return redirect("app:home")
 
 
@@ -84,8 +111,8 @@ class HomeView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         context["receipt_form"] = ReceiptForm()
-        context["unapproved_submissions"] = Submission.objects.filter(approved=False) if user.is_superuser else Submission.objects.filter(user=user, approved=False)
-        context["approved_submissions"] = Submission.objects.filter(approved=True) if user.is_superuser  else Submission.objects.filter(user=user, approved=True)
+        context["unapproved_submissions"] = Submission.objects.filter(processed=False) if user.is_superuser else Submission.objects.filter(user=user, processed=False)
+        context["approved_submissions"] = Submission.objects.filter(processed=True) if user.is_superuser  else Submission.objects.filter(user=user, processed=True)
 
         return context
 

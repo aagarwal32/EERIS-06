@@ -6,7 +6,7 @@
             <div class="user" style="width: 100px;">By {{submission.user.first_name}} {{submission.user.last_name}}</div>
             <div class="receipt">
                 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewReceiptModal{{submission.id}}"><i class="bi bi-file-text"></i> View Receipt</button>
-                {% if not submission.approved %} 
+                {% if not submission.processed %} 
                   <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-outline-primary">
                       Edit <i class="bi bi-pen"></i> 
                   </a>
@@ -19,11 +19,31 @@
             <div class="date" style="width: 200px;">At {{submission.created_at}}</div>
 
             <div class="approval" style="width: 200px; text-align: end;">
-                {% if not submission.approved %} 
-                <div style="color: rgb(180, 100, 0);">Pending Approval</div>
+                {% if not submission.processed %} 
+                  {% if user.is_superuser %}
+                    <div class="btn-group" role="group" aria-label="process-control">
+                      <form action="{% url 'app:processSubmission' submission.id 'true' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-success" style="margin-right: 3px;">Approve</button>
+                      </form>
+                      
+                      <form action="{% url 'app:processSubmission' submission.id 'false' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger">Decline</button>
+                      </form>
+                    </div>
+                  {% else %}
+                     <div style="color: rgb(180, 100, 0);">Pending Approval</div>
+                  {% endif %}
                 {% else %}
-                <div style="color: rgb(25, 135, 84);">Approved</div>
+                  {% if submission.approved %}
+                    <div class="text-success">Approved</div>
+                  {% else %}
+                    <div class="text-danger">Declined</div>
+                  {% endif %}
                 {% endif %}
+
+              
             </div>
         </div>
         <hr />

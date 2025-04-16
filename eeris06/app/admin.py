@@ -9,7 +9,7 @@ class CustomUserAdmin(admin.ModelAdmin):
     show_facets = admin.ShowFacets.ALWAYS
 @admin.register(Submission)
 class SubmissionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'receipt', 'approved', 'created_at')
+    list_display = ('id', 'user', 'receipt', 'processed', 'approved', 'created_at')
 
 admin.site.register(Receipt)
 

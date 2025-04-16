@@ -32,11 +32,9 @@
                             <a class="nav-link active" href="{% url 'app:home' %}">Dashboard</a>
                         </li>
 
-                        {% if user.is_superuser %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Employees</a>
+                            <a class="nav-link" href="#">Report & Analytics</a>
                         </li>
-                        {% endif %}
                                             
                         <form action="{% url 'app:logout' %}" method="post" style="display: inline;">
                             {% csrf_token %}
