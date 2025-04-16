@@ -47,7 +47,7 @@ EERIS-06 | Home
 <hr />
 {% include "components/submission_list.html" with submissions=unapproved_submissions %}
 
-<h2 class="mt-4">Processed Submissions ({{unapproved_submissions|length}})</h2>
+<h2 class="mt-4">Processed Submissions ({{approved_submissions|length}})</h2>
 <hr />
 {% include "components/submission_list.html" with submissions=approved_submissions  %}
 

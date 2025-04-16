@@ -7,14 +7,13 @@
             <div class="receipt">
                 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewReceiptModal{{submission.id}}"><i class="bi bi-file-text"></i> View Receipt</button>
                 {% if not submission.approved %} 
-                <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-outline-primary">
-                    Edit <i class="bi bi-pen"></i> 
-                </a>
+                  <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-outline-primary">
+                      Edit <i class="bi bi-pen"></i> 
+                  </a>
 
                    {% if not user.is_superuser or user.id == submission.user.id %}
                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteReceiptModal{{submission.id}}"> <i class="bi bi-trash"></i></button>
                    {% endif %}
-
                  {% endif %}
              </div>
             <div class="date" style="width: 200px;">At {{submission.created_at}}</div>
@@ -51,6 +50,7 @@
 
                         <div><strong>Total Payment:</strong> ${{ submission.receipt.total_payment }}</div>
                         <div><strong>Payment Method:</strong> {{ submission.receipt.pay_method }}</div>
+                        <div><strong>Expense Category:</strong> {{ submission.receipt.expense_category|title }}</div>
                         <div><strong>Created At:</strong> {{ submission.receipt.created_at|date:"F d, Y H:i" }}</div>
                     </div>
                 </div>

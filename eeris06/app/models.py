@@ -65,6 +65,27 @@ def create_default_receipt_name():
 
 # receipt object
 class Receipt(models.Model):
+    CATEGORY_CHOICES = [
+        ('travel', 'Travel'),
+        ('food', 'Food & Drinks'),
+        ('office supplies', 'Office Supplies'),
+        ('utilities', 'Utilities'),
+        ('parking & tolls', 'Parking & Tolls'),
+        ('training & workshops', 'Training & Workshops'),
+        ('software', 'Software & Subscriptions'),
+        ('equipment', 'Equipment Purchases'),
+        ('maintenance', 'Maintenance Charges'),
+        ('shipping & delivery', 'Shipping & Delivery'),
+        ('insurance', 'Insurance'),
+        ('marketing', 'Marketing & Advertising'),
+        ('events', 'Conferences & Events'),
+        ('gifts', 'Client Gifts'),
+        ('admin', 'Administrative Fees'),
+        ('recruiting', 'Recruiting Expenses'),
+        ('employee wellness', 'Employee Wellness & Perks'),
+        ('other', 'Other'),
+    ]
+        
     receipt_name = models.CharField(max_length=50, default=create_default_receipt_name)
     store_name = models.CharField(max_length=200)
     
@@ -78,6 +99,13 @@ class Receipt(models.Model):
     line_items = models.CharField(max_length=20000, blank=True)
     total_payment = models.DecimalField(max_digits=10, decimal_places=2)
     pay_method = models.CharField(max_length=200)
+    expense_category = models.CharField(
+        max_length=50,
+        choices=CATEGORY_CHOICES,
+        default='other',
+        blank=False
+    )
+
 
     def __str__(self):
         return f"Receipt from {self.store_name} - Total: ${self.total_payment}"
