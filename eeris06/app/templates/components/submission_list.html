@@ -9,9 +9,13 @@
                 {% if not submission.approved %} 
                 <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-outline-primary">
                     Edit <i class="bi bi-pen"></i> 
-                 </a>
-                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteReceiptModal{{submission.id}}"> <i class="bi bi-trash"></i></button>
-                {% endif %}
+                </a>
+
+                   {% if not user.is_superuser or user.id == submission.user.id %}
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteReceiptModal{{submission.id}}"> <i class="bi bi-trash"></i></button>
+                   {% endif %}
+
+                 {% endif %}
              </div>
             <div class="date" style="width: 200px;">At {{submission.created_at}}</div>
 

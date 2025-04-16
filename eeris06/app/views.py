@@ -84,8 +84,8 @@ class HomeView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         context["receipt_form"] = ReceiptForm()
-        context["unapproved_submissions"] = Submission.objects.filter(user=user, approved=False)
-        context["approved_submissions"] = Submission.objects.filter(user=user, approved=True)
+        context["unapproved_submissions"] = Submission.objects.filter(approved=False) if user.is_superuser else Submission.objects.filter(user=user, approved=False)
+        context["approved_submissions"] = Submission.objects.filter(approved=True) if user.is_superuser  else Submission.objects.filter(user=user, approved=True)
 
         return context
 
