@@ -72,7 +72,6 @@ def deleteSubmission(request, submission_id=None):
 
 class HomeView(LoginRequiredMixin, ListView):
     template_name = "main/home.html"
-    context_object_name = "latest_submissions_list"
     model = Submission
     login_url = "app:login"
 
@@ -83,7 +82,11 @@ class HomeView(LoginRequiredMixin, ListView):
     # set and pass context to template
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['receipt_form'] = ReceiptForm()
+        user = self.request.user
+        context["receipt_form"] = ReceiptForm()
+        context["unapproved_submissions"] = Submission.objects.filter(user=user, approved=False)
+        context["approved_submissions"] = Submission.objects.filter(user=user, approved=True)
+
         return context
 
 

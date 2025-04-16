@@ -5,7 +5,7 @@ EERIS-06 | Home
 
 {% block content %}
 <h1 class="mt-2">{{request.user.first_name}}'s Dashboard</h1>
-<hr>
+<hr />
 
 {% if messages %}
     {% for message in messages %}
@@ -27,8 +27,7 @@ EERIS-06 | Home
 
     {% for field in receipt_form %}
         <div class="mb-2">
-            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-
+            <label for="{{ field.id_for_label }}" class="form-label"><b>{{ field.label }}</b></label>
             {% if field.errors %}
                 <div class="text-danger">
                     {% for error in field.errors %}
@@ -43,98 +42,14 @@ EERIS-06 | Home
     <button type="submit" class="btn btn-success mb-2 mt-3"><i class="bi bi-upload"></i> Create Receipt</button>  
 </form>
 
-<h2 class="mt-4">All Submissions ({{latest_submissions_list|length}})</h2>
-<hr>
 
-<div class="submissions-container mb-4">
-    {% if latest_submissions_list %}
-        {% for submission in latest_submissions_list %}
-        <div class="d-flex submission-item justify-content-between align-items-center" style="gap: 12px;">
-            <div class="name" style="width: 320px;">Submission for <span class="text-success">{{submission.receipt.receipt_name|truncatechars:20}}</span></div>
-            <div class="user" style="width: 100px;">By {{submission.user.first_name}} {{submission.user.last_name}}</div>
-            <div class="receipt">
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewReceiptModal{{submission.id}}"><i class="bi bi-file-text"></i> View Receipt</button>
-                {% if not submission.approved %}
-                 <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-outline-primary">
-                    Edit <i class="bi bi-pen"></i> 
-                 </a>
-                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteReceiptModal{{submission.id}}"> <i class="bi bi-trash"></i></button>
-                {% endif %}
-            </div>
-            <div class="date" style="width: 200px;">At {{submission.created_at}}</div>
+<h2 class="mt-4">Pending Submissions ({{unapproved_submissions|length}})</h2>
+<hr />
+{% include "components/submission_list.html" with submissions=unapproved_submissions %}
 
-            <div class="approval" style="width: 200px; text-align: end;">
-                {% if not submission.approved %}
-                <div style="color: rgb(180, 100, 0);">Pending Approval</div>
-                {% else %}
-                <div style="color: darkgreen;">Approved</div>
-                {% endif %}
-            </div>
-        </div>
-        <hr />
-
-        <div class="modal fade" id="viewReceiptModal{{submission.id}}" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title" id="viewReceiptModalLabel{{submission.id}}">Receipt: {{submission.receipt.receipt_name}}</div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div><strong>Store:</strong> {{ submission.receipt.store_name }}</div>
-                        <div><strong>Phone:</strong> {{ submission.receipt.store_phone }}</div>
-                        <div><strong>Address:</strong> {{ submission.receipt.store_address }}</div>
-
-                        {% if submission.receipt.store_site %}
-                            <div><strong>Website:</strong> <a href="{{ submission.receipt.store_site }}" target="_blank">{{ submission.receipt.store_site }}</a></div>
-                        {% endif %}
-
-                        {% if submission.receipt.line_items %}
-                            <div><strong>Items:</strong> {{ submission.receipt.line_items }}</div>
-                        {% endif %}
-
-                        <div><strong>Total Payment:</strong> ${{ submission.receipt.total_payment }}</div>
-                        <div><strong>Payment Method:</strong> {{ submission.receipt.pay_method }}</div>
-                        <div><strong>Created At:</strong> {{ submission.receipt.created_at|date:"F d, Y H:i" }}</div>
-                    </div>
-                </div>
-            </div>            
-        </div>
-
-        
-{% if not submission.approved %}
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteReceiptModal{{ submission.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ submission.id }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-  
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel{{ submission.id }}">Confirm Deletion</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-  
-        <div class="modal-body">
-          Are you sure you want to delete the submission <strong>{{ submission.receipt.receipt_name }}</strong>?
-        </div>
-  
-        <div class="modal-footer">
-          <form action="{% url 'app:deleteSubmission' submission.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Yes, Delete</button>
-          </form>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        </div>
-  
-      </div>
-    </div>
-  </div>
-  {% endif %}
-        {% endfor %}
-    {% else %}
-    No submissions yet. Submit your first receipt by clicking "New Receipt"!
-    {% endif %}
-</div>
-
+<h2 class="mt-4">Processed Submissions ({{unapproved_submissions|length}})</h2>
+<hr />
+{% include "components/submission_list.html" with submissions=approved_submissions  %}
 
 <script>
     const receiptForm = document.getElementById('createReceiptForm');
