@@ -382,14 +382,6 @@
 },
 {
   "model": "sessions.session",
-  "pk": "7quv7ckrc5euvvlk604gm9ci1tuk9dzm",
-  "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2hBoB0Zcuu8ZmoGZStVAUtqV8e7apAvd_vfef6mRtjWPW5NlnFldVKdOv1uk9JCyA75TuVWdalmXOepd0Qdteqgsz-vh_h1kavlbo_OCjNYBQycQvZCNIcFENnhD6EzPLtoQU39GMZCcSALrDNoAU0D1_gDbqDd7:1u4pFo:EnVP3PcNA_c98pKAZpMYvpmM4A7pKHxMAAY-lFeZZXs",
-    "expire_date": "2025-04-29T22:59:44.503Z"
-  }
-},
-{
-  "model": "sessions.session",
   "pk": "ie8ylc7g45x811invdguacdxybj543ne",
   "fields": {
     "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1u4ijk:cAd54Jsa5Jk4tF-SC4H3WjWT7OT5NPbh_uzN1ZslrIk",
@@ -429,11 +421,19 @@
   }
 },
 {
+  "model": "sessions.session",
+  "pk": "u7pym3vbs0cuqzxelq8dkwxugtjq912y",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1u4rWY:F5Ldz_VUMFrKKzOGs_6BfiLl5pvBFdQgsI5VCZRBkLA",
+    "expire_date": "2025-04-30T01:25:10.749Z"
+  }
+},
+{
   "model": "app.customuser",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$870000$XGeK0saP1AHSPxktx0JGu5$OaoUZgJlQdeVI8E21urZtmDi6UzgQtNJAkgoh3hUKok=",
-    "last_login": "2025-04-15T22:36:39.587Z",
+    "last_login": "2025-04-16T01:25:10.746Z",
     "is_superuser": false,
     "is_staff": false,
     "is_active": true,
@@ -463,6 +463,23 @@
   }
 },
 {
+  "model": "app.customuser",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$TgfCUjSpDha4eTBacxl1Xr$+qIQW/nMWwWxmO5rL2nUaWNe1SlEkX4MZf/YjaRWEmA=",
+    "last_login": "2025-04-16T01:11:32.222Z",
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-16T01:11:23.104Z",
+    "email": "Fang@usf.edu",
+    "first_name": "Fang",
+    "last_name": "Vader",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "app.submission",
   "pk": 1,
   "fields": {
@@ -483,10 +500,30 @@
   }
 },
 {
+  "model": "app.submission",
+  "pk": 4,
+  "fields": {
+    "user": 3,
+    "receipt": 4,
+    "approved": false,
+    "created_at": "2025-04-16T01:13:11.518Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 5,
+  "fields": {
+    "user": 2,
+    "receipt": 5,
+    "approved": false,
+    "created_at": "2025-04-16T01:19:30.222Z"
+  }
+},
+{
   "model": "app.receipt",
   "pk": 1,
   "fields": {
-    "receipt_name": "Fang Stores - R1",
+    "receipt_name": "Fang Stores - R4",
     "store_name": "Fang Stores",
     "store_phone": "8138737890",
     "store_address": "Fang O Lakes, Fang Street, FL 33543",
@@ -510,6 +547,36 @@
     "line_items": "item 1: EERIS-06, quantity: 1, price: $0",
     "total_payment": "0.00",
     "pay_method": "Cash"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 4,
+  "fields": {
+    "receipt_name": "Fang - R6",
+    "store_name": "Fang Supermarkets",
+    "store_phone": "2981037465",
+    "store_address": "Fang O Lakes, Fang Ave, Fang, FL",
+    "store_site": "http://www.fang.online",
+    "created_at": "2025-04-16T01:13:11.497Z",
+    "line_items": "Coffee, 3, Price: $10\r\nMilk, 2, Price: $8\r\nFortune Cookies, 10, Price: $10",
+    "total_payment": "28.00",
+    "pay_method": "Cash"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 5,
+  "fields": {
+    "receipt_name": "untitled-receipt-20250415211857",
+    "store_name": "jvnjknver",
+    "store_phone": "1234567890",
+    "store_address": "tbijntji",
+    "store_site": "http://tbiuntij.com",
+    "created_at": "2025-04-16T01:19:30.218Z",
+    "line_items": "tbuitnitnb",
+    "total_payment": "45.00",
+    "pay_method": "f"
   }
 }
 ]
