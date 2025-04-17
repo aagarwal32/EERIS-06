@@ -7,7 +7,20 @@ EERIS-06 | Report & Analytics
 
 {% block content %}
 
-<h2 class="mt-4">Expense Report (categorical breakdown)</h2>
+<div class="d-flex flex-wrap justify-content-between align-items-end">
+    <h2 class="mt-4">Expense Report (categorical breakdown)</h2>
+    <form action="{% url 'app:reportAnalytics' %}" method="post" class="d-inline-block">
+        {% csrf_token %}
+        <label for="choice" class="form-label">Sort by:</label>
+        <select name="choice" id="choice" onchange="this.form.submit()">
+          <option value="Total" {% if sort == "Total" %} selected {% endif %} >Total</option>
+          <option value="Approved Expenses"  {% if sort == "Approved Expenses" %} selected {% endif %} >Approved Expenses</option>
+          <option value="Declined Expenses"  {% if sort == "Declined Expenses" %} selected {% endif %} >Declined Expenses</option>
+          <option value="Expense Saved"  {% if sort == "Expense Saved" %} selected {% endif %} >Expense Saved</option>
+        </select>
+      </form>      
+</div>
+
 <hr />
 
 <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">

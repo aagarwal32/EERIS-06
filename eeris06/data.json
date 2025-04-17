@@ -504,14 +504,6 @@
 },
 {
   "model": "sessions.session",
-  "pk": "2hq9z7nsjfrlbwwxue6qjpdji4g4a521",
-  "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2hBoB0Zcuu8ZmoGZStVAUtqV8e7apAvd_vfef6mRtjWPW5NlnFldVKdOv1uk9JCyA75TuVWdalmXOepd0Qdteqgsz-vh_h1kavlbo_OCjNYBQycQvZCNIcFENnhD6EzPLtoQU39GMZCcSALrDNoAU0D1_gDbqDd7:1u57C6:lSDF6Y50TZldAded5LO5gNCZhSw5jgAWpPnbdQUnUxE",
-    "expire_date": "2025-04-30T18:09:06.858Z"
-  }
-},
-{
-  "model": "sessions.session",
   "pk": "2oo53tqfuge24y3jjrpfde0thss2ylbg",
   "fields": {
     "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1u4VXA:dUBfEeSXg9Ht89vw8PEt7eBdrjLSk2Ps-jzvHNMU228",
@@ -604,7 +596,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$870000$y01WeDNkxboV5UywijZWPD$aukdvUZzjYSDgJAFdW8G4X6rqisYeeVGVa5t+D5/vY8=",
-    "last_login": "2025-04-16T18:09:06.853Z",
+    "last_login": "2025-04-17T02:02:19.603Z",
     "is_superuser": true,
     "is_staff": true,
     "is_active": true,
@@ -621,7 +613,7 @@
   "pk": 3,
   "fields": {
     "password": "pbkdf2_sha256$870000$TgfCUjSpDha4eTBacxl1Xr$+qIQW/nMWwWxmO5rL2nUaWNe1SlEkX4MZf/YjaRWEmA=",
-    "last_login": "2025-04-16T18:07:55.538Z",
+    "last_login": "2025-04-17T02:51:28.971Z",
     "is_superuser": false,
     "is_staff": false,
     "is_active": true,

@@ -100,13 +100,21 @@ def processSubmission(request, submission_id=None, approve=None):
 @login_required
 def reportAnalytics(request):
 
+    if request.method == 'POST':
+        sort_choice = request.POST['choice']
+    else:
+        sort_choice = 'Total'
+
     def total(qset):
         return sum([submission.receipt.total_payment for submission in qset])
     
     context = {}
     total_expense, total_approved_expense, total_declined_expense, total_expense_saved = Decimal(0), Decimal(0), Decimal(0), Decimal(0)
     
-    all_submissions = Submission.objects.filter(processed=True)
+    if request.user.is_superuser:
+        all_submissions = Submission.objects.filter(processed=True)
+    else:
+        all_submissions = Submission.objects.filter(user=request.user, processed=True)
     
     for category in Receipt.CATEGORY_CHOICES:
         context[category[1]] = {
@@ -125,13 +133,9 @@ def reportAnalytics(request):
     total_expense_saved = (total_declined_expense / total_expense * 100) if total_expense else Decimal(0)
     total_expense_saved = total_expense_saved.quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
 
-    context = dict(sorted(context.items(), key=lambda item: item[1]['Total'], reverse=True))
-
-    print()
-    print(context)
-    print()
+    context = dict(sorted(context.items(), key=lambda item: item[1][sort_choice], reverse=True))
     
-    return render(request, 'main/report_analytics.html', {'data':context, 'total_expense': total_expense, 'total_approved_expense': total_approved_expense, 'total_declined_expense': total_declined_expense, 'total_expense_saved': total_expense_saved})
+    return render(request, 'main/report_analytics.html', {'data':context, 'total_expense': total_expense, 'total_approved_expense': total_approved_expense, 'total_declined_expense': total_declined_expense, 'total_expense_saved': total_expense_saved, 'sort':sort_choice })
 
 
 
