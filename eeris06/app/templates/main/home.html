@@ -4,7 +4,7 @@ EERIS-06 | Home
 {% endblock %}
 
 {% block content %}
-<h1 class="mt-2">{{request.user.first_name}}'s Dashboard</h1>
+<h1 class="mt-2">{{request.user.first_name}} {{request.user.last_name}}'s Dashboard</h1>
 <hr />
 
 {% if messages %}
