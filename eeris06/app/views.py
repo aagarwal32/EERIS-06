@@ -10,7 +10,7 @@ from django.urls import reverse, reverse_lazy
 from decimal import Decimal, ROUND_HALF_UP
 
 from .forms import CustomUserCreationForm, ReceiptForm, SubmissionForm
-from .models import Submission, Receipt
+from .models import CustomUser, Submission, Receipt
 
 def authUserRegister(request):
     form = CustomUserCreationForm()
@@ -137,6 +137,10 @@ def reportAnalytics(request):
     
     return render(request, 'main/report_analytics.html', {'data':context, 'total_expense': total_expense, 'total_approved_expense': total_approved_expense, 'total_declined_expense': total_declined_expense, 'total_expense_saved': total_expense_saved, 'sort':sort_choice })
 
+@login_required
+def employeeDirectory(request):
+    employee_list = CustomUser.objects.all().order_by('first_name', 'last_name')
+    return render(request, 'main/employee_directory.html', {'employee_list': employee_list})
 
 
 class HomeView(LoginRequiredMixin, ListView):
