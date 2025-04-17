@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from django.contrib import messages
 from django.utils import timezone
 from django.urls import reverse, reverse_lazy
+from decimal import Decimal, ROUND_HALF_UP
 
 from .forms import CustomUserCreationForm, ReceiptForm, SubmissionForm
 from .models import Submission, Receipt
@@ -103,6 +104,7 @@ def reportAnalytics(request):
         return sum([submission.receipt.total_payment for submission in qset])
     
     context = {}
+    total_expense, total_approved_expense, total_declined_expense, total_expense_saved = Decimal(0), Decimal(0), Decimal(0), Decimal(0)
     
     all_submissions = Submission.objects.filter(processed=True)
     
@@ -112,12 +114,24 @@ def reportAnalytics(request):
             'Declined Expenses': total(all_submissions.filter(approved=False, receipt__expense_category=category[0])),
         }
         context[category[1]]['Total'] = context[category[1]]['Approved Expenses'] + context[category[1]]['Declined Expenses']
+        context[category[1]]['Expense Saved'] = (context[category[1]]['Declined Expenses'] / context[category[1]]['Total'] * 100) if context[category[1]]['Total'] else Decimal(0)
+        context[category[1]]['Expense Saved']  = context[category[1]]['Expense Saved'].quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
+
+        total_expense += context[category[1]]['Total']
+        total_approved_expense += context[category[1]]['Approved Expenses']
+        total_declined_expense += context[category[1]]['Declined Expenses']
+
+ 
+    total_expense_saved = (total_declined_expense / total_expense * 100) if total_expense else Decimal(0)
+    total_expense_saved = total_expense_saved.quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
+
+    context = dict(sorted(context.items(), key=lambda item: item[1]['Total'], reverse=True))
 
     print()
     print(context)
     print()
-
-    return render(request, 'main/report_analytics.html', {'data':context})
+    
+    return render(request, 'main/report_analytics.html', {'data':context, 'total_expense': total_expense, 'total_approved_expense': total_approved_expense, 'total_declined_expense': total_declined_expense, 'total_expense_saved': total_expense_saved})
 
 
 

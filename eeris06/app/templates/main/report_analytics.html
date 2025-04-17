@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
 EERIS-06 | Report & Analytics
 {% endblock %}
@@ -6,8 +7,18 @@ EERIS-06 | Report & Analytics
 
 {% block content %}
 
-<h2 class="mt-4">Processed Submissions Report</h2>
+<h2 class="mt-4">Expense Report (categorical breakdown)</h2>
 <hr />
+
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+    <h5 class="mb-1">Total Expenses: <span class="text-primary">${{total_expense}}</span> </h5>
+    <h5 class="mb-1">Total Approved Expenses: <span class="text-success">${{total_approved_expense}}</span> </h5>
+    <h5 class="mb-1">Total Declined Expenses: <span class="text-danger">${{total_declined_expense}}</span> </h5>
+    <h5 class="mb-1">Total Expenses Saved: <span class="text-primary">{{total_expense_saved}}%</span> </h5>
+</div>
+
+<hr />
+
 {% include "components/report_template.html" with data=data  %}
 
 {% endblock %}

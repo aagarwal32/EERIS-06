@@ -26,6 +26,123 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-04-16T16:45:18.281Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "Submission by Fang@usf.edu on 2025-04-16 16:44:36",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Approved\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-04-16T16:54:51.081Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "Submission by Fang@usf.edu on 2025-04-16 16:44:36",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Processed\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-04-16T16:54:56.880Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "Submission by TestUser@gmail.com on 2025-02-15 18:17:23",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Processed\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-04-16T16:55:13.219Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "Submission by Fang@usf.edu on 2025-04-16 16:44:36",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Approved\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-04-16T17:28:12.986Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Submission by TestUser@gmail.com on 2025-02-15 14:23:43",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Approved\", \"Processed\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-04-16T17:28:43.866Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "Submission by Fang@usf.edu on 2025-04-16 16:44:36",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Processed\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-04-16T17:36:11.052Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Submission by TestUser@gmail.com on 2025-02-15 14:23:43",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Processed\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-04-16T17:39:26.009Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "4",
+    "object_repr": "Submission by Fang@usf.edu on 2025-04-16 01:13:11",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Processed\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-04-16T17:39:40.789Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "Submission by TestUser@gmail.com on 2025-02-15 18:17:23",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Approved\", \"Processed\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -387,6 +504,14 @@
 },
 {
   "model": "sessions.session",
+  "pk": "2hq9z7nsjfrlbwwxue6qjpdji4g4a521",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBoB0Zcuu8ZmoGZStVAUtqV8e7apAvd_vfef6mRtjWPW5NlnFldVKdOv1uk9JCyA75TuVWdalmXOepd0Qdteqgsz-vh_h1kavlbo_OCjNYBQycQvZCNIcFENnhD6EzPLtoQU39GMZCcSALrDNoAU0D1_gDbqDd7:1u57C6:lSDF6Y50TZldAded5LO5gNCZhSw5jgAWpPnbdQUnUxE",
+    "expire_date": "2025-04-30T18:09:06.858Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "2oo53tqfuge24y3jjrpfde0thss2ylbg",
   "fields": {
     "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1u4VXA:dUBfEeSXg9Ht89vw8PEt7eBdrjLSk2Ps-jzvHNMU228",
@@ -479,7 +604,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$870000$y01WeDNkxboV5UywijZWPD$aukdvUZzjYSDgJAFdW8G4X6rqisYeeVGVa5t+D5/vY8=",
-    "last_login": "2025-04-16T13:25:26.256Z",
+    "last_login": "2025-04-16T18:09:06.853Z",
     "is_superuser": true,
     "is_staff": true,
     "is_active": true,
@@ -496,7 +621,7 @@
   "pk": 3,
   "fields": {
     "password": "pbkdf2_sha256$870000$TgfCUjSpDha4eTBacxl1Xr$+qIQW/nMWwWxmO5rL2nUaWNe1SlEkX4MZf/YjaRWEmA=",
-    "last_login": "2025-04-16T13:24:54.090Z",
+    "last_login": "2025-04-16T18:07:55.538Z",
     "is_superuser": false,
     "is_staff": false,
     "is_active": true,
@@ -514,7 +639,8 @@
   "fields": {
     "user": 1,
     "receipt": 1,
-    "approved": false,
+    "approved": true,
+    "processed": true,
     "created_at": "2025-02-15T14:23:43.571Z"
   }
 },
@@ -524,7 +650,8 @@
   "fields": {
     "user": 1,
     "receipt": 2,
-    "approved": true,
+    "approved": false,
+    "processed": false,
     "created_at": "2025-02-15T18:17:23.136Z"
   }
 },
@@ -535,7 +662,19 @@
     "user": 3,
     "receipt": 4,
     "approved": false,
+    "processed": true,
     "created_at": "2025-04-16T01:13:11.518Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 7,
+  "fields": {
+    "user": 3,
+    "receipt": 6,
+    "approved": true,
+    "processed": true,
+    "created_at": "2025-04-16T16:44:36.890Z"
   }
 },
 {
@@ -584,6 +723,22 @@
     "total_payment": "28.00",
     "pay_method": "Cash",
     "expense_category": "food"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 6,
+  "fields": {
+    "receipt_name": "Fang R10",
+    "store_name": "Fang Stores",
+    "store_phone": "1234567890",
+    "store_address": "Fang O Lakes, Fang Street, FL 33543",
+    "store_site": "http://walmart.com",
+    "created_at": "2025-04-16T16:44:36.869Z",
+    "line_items": "gas, 10 gallons, $40\r\ntire change, 1 tire, $100",
+    "total_payment": "140.00",
+    "pay_method": "Credit",
+    "expense_category": "travel"
   }
 }
 ]
