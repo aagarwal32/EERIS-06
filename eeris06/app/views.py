@@ -9,6 +9,13 @@ from django.utils import timezone
 from django.urls import reverse, reverse_lazy
 from decimal import Decimal, ROUND_HALF_UP
 
+import os, json, base64
+from django.conf import settings
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from openai import OpenAI
+
 from .forms import CustomUserCreationForm, ReceiptForm, SubmissionForm
 from .models import CustomUser, Submission, Receipt
 
@@ -194,3 +201,75 @@ class CreateReceiptView(LoginRequiredMixin, FormView):
                 receipt_form=form, latest_submissions_list=latest_submissions
                 )
             )
+
+
+class ReceiptExtractView(APIView):
+    def post(self, request, *args, **kwargs):
+        api_key = settings.OPENAI_API_KEY
+        if not api_key:
+            return Response(
+                {"error": "OpenAI API key is missing or not set."}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+        
+        receipt_image = request.FILES.get("image")
+        if not receipt_image:
+            return Response(
+                {"error": "No image file provided."},
+                status=status.HTTP_400_BAD_REQUEST
+                )
+        
+        receipt_image_encoded = base64.b64encode(receipt_image.read()).decode('utf-8')
+        
+        client = OpenAI(api_key=api_key)
+        
+        openai_file = client.files.create(file=receipt_image.file,purpose="user_data")
+
+        # prepare chat messages
+        system_prompt = f"""
+        You are a helpful assistant that extracts structured data from receipts.
+        Return the extracted data as a JSON object with these fields:
+        receipt_name (Format: [store name]-receipt-[number] where number is circled in the top right of the receipt), 
+        receipt_date (Format: YYYY-MM-DD), store_name, store_phone (Format: Digits only), store_address,
+        store_site (Format: Link to store website), total_payment, pay_method (Format: Choose either Cash, Credit, Debit, Check, E-banking),
+        line_items (Format: [Item Quantity] [Item Name] [Item Price]. Only provide price and/or quantity if available. Must be plain text and each item on new line), 
+        expense_category. Categories: {', '.join([c for c, _ in Receipt.CATEGORY_CHOICES])}.
+        If any field is missing or unreadable, return null.
+        Ignore promotions, QR codes, surveys, etc.
+        """
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "Please extract the receipt information from this image."},
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:{receipt_image.content_type};base64,{receipt_image_encoded}"
+                        }
+                    }
+                ]
+            }
+        ]
+
+        try:
+            completion = client.chat.completions.create(
+                messages=messages,
+                model="gpt-4.1",
+                max_tokens=2000,
+                temperature=0.0
+            )
+            raw = completion.choices[0].message.content.strip()
+            payload = json.loads(raw)
+
+        except json.JSONDecodeError:
+            return Response(
+                {"error": "Invalid JSON output", "raw": raw, "message": "There was a problem loading the data."},
+                 status=status.HTTP_502_BAD_GATEWAY
+            )
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        return Response(payload, status=status.HTTP_200_OK)

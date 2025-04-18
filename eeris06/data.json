@@ -536,6 +536,14 @@
 },
 {
   "model": "sessions.session",
+  "pk": "k7uxria7cf26c2321an4500irkmnky1i",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1tqzNb:vMWNA2sFVEUge4kR78agCoHZJUCGzeNtfqPerPOKf-0",
+    "expire_date": "2025-03-22T18:58:35.889Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "laudd70gign57n1ez32lpj69gj5d64qa",
   "fields": {
     "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1tve4o:aOcDvOku5vWGmU-E531u8OBjGOjFGqMKBDs_iHe0_CM",
@@ -564,6 +572,14 @@
   "fields": {
     "session_data": ".eJxVjDsOwjAQRO_iGln-e01Jzxmstb3gAHKkOKkQd8eRUkAzxZs382YRt7XGrdMSp8LOTLLTL0uYn9T2ojyw3Wee57YuU-K7wo-28-tc6HU53L-Dir2OtQPrs88G1YhEN2-1MJrAeS-0DKACFmmNE0WStU4bkE4ZoBQcDFTY5wu2gTac:1tjMwa:XoyA1xDTh81DhtLPI4-DMe8jX8yFmnygMZmFtk7OHu8",
     "expire_date": "2025-03-01T18:31:12.902Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ql7uf8vd90hwvt50t0linzmaxiddw2jg",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSENUxBcuvcbyJ0BbNVA0seq8d-1SRe6veecu6mIdRniOucpjkldFKnT78aQZ647SA_Ue9PS6jKNrHdFH3TWt5by63q4fwcD5uFbMxB6K8b3BGPJFzEpIAgyWZC3XM5dCNmwsCvsvDhyApREnenBWb0__KI47Q:1u5ZQK:9jEcmkd94tQo0M9eq7uDKKL9G4nFJ8SDDuY2mGrvAd8",
+    "expire_date": "2025-05-02T00:17:40.290Z"
   }
 },
 {
@@ -613,7 +629,7 @@
   "pk": 3,
   "fields": {
     "password": "pbkdf2_sha256$870000$TgfCUjSpDha4eTBacxl1Xr$+qIQW/nMWwWxmO5rL2nUaWNe1SlEkX4MZf/YjaRWEmA=",
-    "last_login": "2025-04-17T02:51:28.971Z",
+    "last_login": "2025-04-18T00:17:40.289Z",
     "is_superuser": false,
     "is_staff": false,
     "is_active": true,
@@ -670,10 +686,33 @@
   }
 },
 {
+  "model": "app.submission",
+  "pk": 8,
+  "fields": {
+    "user": 3,
+    "receipt": 7,
+    "approved": false,
+    "processed": false,
+    "created_at": "2025-04-18T00:36:39.416Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 9,
+  "fields": {
+    "user": 3,
+    "receipt": 8,
+    "approved": false,
+    "processed": false,
+    "created_at": "2025-04-18T00:50:00.213Z"
+  }
+},
+{
   "model": "app.receipt",
   "pk": 1,
   "fields": {
     "receipt_name": "Fang Stores - R4",
+    "receipt_date": "2025-04-17",
     "store_name": "Fang Stores",
     "store_phone": "8138737890",
     "store_address": "Fang O Lakes, Fang Street, FL 33543",
@@ -690,6 +729,7 @@
   "pk": 2,
   "fields": {
     "receipt_name": "fang-receipt-1",
+    "receipt_date": "2025-04-17",
     "store_name": "Fang's Club",
     "store_phone": "0101001100",
     "store_address": "Fang Ave., FangCity, Florida, 33217",
@@ -706,6 +746,7 @@
   "pk": 4,
   "fields": {
     "receipt_name": "Fang - R6",
+    "receipt_date": "2025-04-17",
     "store_name": "Fang Supermarkets",
     "store_phone": "2981037465",
     "store_address": "Fang O Lakes, Fang Ave, Fang, FL",
@@ -722,6 +763,7 @@
   "pk": 6,
   "fields": {
     "receipt_name": "Fang R10",
+    "receipt_date": "2025-04-17",
     "store_name": "Fang Stores",
     "store_phone": "1234567890",
     "store_address": "Fang O Lakes, Fang Street, FL 33543",
@@ -731,6 +773,40 @@
     "total_payment": "140.00",
     "pay_method": "Credit",
     "expense_category": "travel"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 7,
+  "fields": {
+    "receipt_name": "Taco Bell-receipt-1",
+    "receipt_date": "2025-04-11",
+    "store_name": "Taco Bell",
+    "store_phone": "8136318699",
+    "store_address": "17402 Dona Michelle Dr, Tampa, FL 33647",
+    "store_site": "https://www.tacobell.com",
+    "created_at": "2025-04-18T00:36:39.414Z",
+    "line_items": "1 Discovery Luxe Box 9.99\r\n1 MED MT DEW BAJA BLAST 0.00\r\n1 Stk Street Chalupa 2pk 0.00\r\n1 Nacho Cheese DLT 0.00\r\n1 Beef Crunchy Taco 0.00\r\n1 Cinnamon Twist 0.00\r\n1 SIDE Chile Lime Crema Sa 0.60\r\n3 Diablo Sauce 0.00",
+    "total_payment": "11.39",
+    "pay_method": "Credit",
+    "expense_category": "food"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 8,
+  "fields": {
+    "receipt_name": "Great Clips-receipt-2",
+    "receipt_date": "2025-02-27",
+    "store_name": "Great Clips",
+    "store_phone": "8139715222",
+    "store_address": "City Plaza at Tampa Palms, Tampa, FL 33647",
+    "store_site": "",
+    "created_at": "2025-04-18T00:50:00.211Z",
+    "line_items": "1 Haircut 19.00\r\n1 USF + HCC STUDENTS W/ID -2.00\r\n1 Charged tip for Keyona 3.00",
+    "total_payment": "20.00",
+    "pay_method": "Credit",
+    "expense_category": "employee wellness"
   }
 }
 ]

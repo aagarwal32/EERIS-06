@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.validators import RegexValidator
+from django.utils import timezone
 from decimal import Decimal
 from datetime import datetime
 
@@ -88,6 +89,7 @@ class Receipt(models.Model):
     ]
         
     receipt_name = models.CharField(max_length=50, default=create_default_receipt_name)
+    receipt_date = models.DateField(default=timezone.now, help_text="When did you get this receipt?", blank=True)
     store_name = models.CharField(max_length=200)
     
     store_phone = models.CharField(

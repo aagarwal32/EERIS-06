@@ -21,7 +21,15 @@ EERIS-06 | Home
 <form id="createReceiptForm" action="{% url 'app:create_receipt' %}" method="post" novalidate>
     {% csrf_token %}
 
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-between" style="gap: 12px;">
+        <div class="d-flex align-items-center" style="gap: 12px;">
+            <button id="uploadExtractBtn" type="button" class="btn btn-success mb-4" data-url="{% url 'app:extract_receipt' %}"><i class="bi bi-image mx-2"></i> Scan Receipt</button>
+          
+            <input type="file" id="extractImageInput" accept="image/*" style="display: none;">
+
+            <div id="extractResult" class="mb-4" style="white-space: pre-wrap;"></div>
+        </div>
+        
         <button type="button" class="btn-close mb-2" id="cancelReceiptForm" aria-label="Close"></button>
     </div>
 
@@ -39,7 +47,7 @@ EERIS-06 | Home
             {{ field }}
         </div>
     {% endfor %}
-    <button type="submit" class="btn btn-success mb-2 mt-3"><i class="bi bi-upload"></i> Create Receipt</button>  
+    <button type="submit" class="btn btn-success mb-2 mt-3"><i class="bi bi-upload mx-2"></i> Create Receipt</button>  
 </form>
 
 
@@ -51,7 +59,11 @@ EERIS-06 | Home
 <hr />
 {% include "components/submission_list.html" with submissions=approved_submissions  %}
 
+
+
 <script>
+
+    // TOGGLING FORM VISIBILITY
     const receiptForm = document.getElementById('createReceiptForm');
     const toggleReceiptFormButton = document.getElementById('toggleReceiptForm');
 
@@ -76,6 +88,91 @@ EERIS-06 | Home
         receiptForm.style.display = "none";
         toggleReceiptFormButton.style.display = "block";
     });
+
+
+
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function autoFillFields(data) {
+        const fieldMap = {
+            receipt_name: 'id_receipt_name',
+            receipt_date: 'id_receipt_date',
+            store_name: 'id_store_name',
+            store_phone: 'id_store_phone',
+            store_address: 'id_store_address',
+            store_site: 'id_store_site',
+            line_items: 'id_line_items',
+            total_payment: 'id_total_payment',
+            pay_method: 'id_pay_method',
+            expense_category: 'id_expense_category'
+        };
+    
+        for (const [key, fieldId] of Object.entries(fieldMap)) {
+            if (data[key] !== undefined && data[key] !== null) {
+                const field = document.getElementById(fieldId);
+                if (field && typeof field.value === 'string') {
+                    field.value = data[key];
+                    await sleep(500);
+                }
+            }
+        }
+    }
+
+  // RECEIPT SCAN: API REQUEST AND DATA HANDLING
+  const csrftoken = document.querySelector('#createReceiptForm [name=csrfmiddlewaretoken]').value;
+
+  const uploadBtn = document.getElementById('uploadExtractBtn');
+  const fileInput = document.getElementById('extractImageInput');
+  const outputArea = document.getElementById('extractResult');
+
+  // open file selector upon click of upload button
+  uploadBtn.addEventListener('click', () => fileInput.click());
+
+  fileInput.addEventListener('change', async (e) => {
+    // get selected receipt file
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // prepare data for post request
+    const url = uploadBtn.dataset.url;
+    const formData = new FormData();
+    formData.append('image', file);
+
+    outputArea.style.color = 'green';
+    outputArea.textContent = 'Extracting…';
+
+    try {
+        // send post request to view
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'X-CSRFToken': csrftoken },
+            body: formData
+        });
+        const data = await response.json();
+
+        // handle data upon success
+        if (response.ok) {
+            outputArea.textContent = 'Filling form fields...';
+            await autoFillFields(data);
+            outputArea.style.color = 'green';
+            outputArea.textContent = 'Form successfully filled! Please correct any errors.'
+        
+        // handle response errors
+        } else {
+            outputArea.style.color = 'red';
+            outputArea.textContent = `❌ Receipt scan failed. Make sure you uploaded the correct file type.`;
+            console.log(`Receipt Scan Error ${response.status}:`, data);
+        }
+    // handle fetch errors
+    } catch (err) {
+        outputArea.style.color = 'red';
+        outputArea.textContent = `❌ Receipt scan failed due to error. Please try again.`;
+        console.log(`Fetch failed: ${err}`);
+    }
+  });
 </script>
 
 {% endblock %}
