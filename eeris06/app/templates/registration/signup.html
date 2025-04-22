@@ -8,60 +8,59 @@ EERIS-06 | Register User
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4 shadow-lg" style="width: 500px;">
             
-            <h1 class="text-center mb-4 logo-color">Let's get started!</h1>
-            <h4 class="text-center mb-4 logo-color">Create Account</h4>
+            <h1 class="mb-4 logo-color">Create Account</h1>
             
             <form method="POST">
                 {% csrf_token %}
                 <div class="auth-card">
-                    <div class="mb-2">
-                        <h6>Email:</h6>
+                    <div class="form-floating mb-2">
+                        {{ form.email }}
+                        {{ form.email.label_tag }}
                         {% if form.email.errors %}
                             <div class="text-danger">
                                 {{ form.email.errors }}
                             </div>
                         {% endif %}
-                        {{ form.email }}
                     </div>
             
-                    <div class="mb-2">
-                        <h6>First Name:</h6>
+                    <div class="form-floating mb-2">
+                        {{ form.first_name }}
+                        {{ form.first_name.label_tag }}
                         {% if form.first_name.errors %}
                             <div class="text-danger">
                                 {{ form.first_name.errors }}
                             </div>
                         {% endif %}
-                        {{ form.first_name }}
                     </div>
             
-                    <div class="mb-2">
-                        <h6>Last Name:</h6>
+                    <div class="form-floating mb-2">
+                        {{ form.last_name }}
+                        {{ form.last_name.label_tag }}
                         {% if form.last_name.errors %}
                             <div class="text-danger">
                                 {{ form.last_name.errors }}
                             </div>
                         {% endif %}
-                        {{ form.last_name }}
                     </div>
             
-                    <div class="mb-2">
-                        <h6>Password:</h6>
+                    <div class="form-floating mb-2">
+                        {{ form.password1 }}
+                        {{ form.password1.label_tag }}
                         {% if form.password1.errors %}
                             <div class="text-danger">
                                 {{ form.password1.errors }}
                             </div>
                         {% endif %}
-                        {{ form.password1 }}
                     </div>
             
-                    <div class="mb-4">
-                        <h6>Retype Password:</h6>
+                    <div class="form-floating mb-4">
+                        {{ form.password2 }}
+                        {{ form.password2.label_tag }}
                         {% if form.password2.errors %}
                             <div class="text-danger">
                                 {{ form.password2.errors }}
                             </div>
                         {% endif %}
-                        {{ form.password2 }}
                     </div>
             
                     <button type="submit" class="btn w-100">Sign Up</button>

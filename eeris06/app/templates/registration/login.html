@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block title %}
 EERIS-06 | Login
@@ -18,27 +19,26 @@ EERIS-06 | Login
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4 shadow-lg" style="width: 500px;">
         
-        <h1 class="text-center mb-4 logo-color">Welcome to EERIS-06!</h1>
+        <h1 class="mb-4 logo-color">Log into EERIS-06</h1>
         
         <form method="POST">
             {% csrf_token %}
             <div class="auth-card">
-                <div class="mb-2">
-                    <h6>Email:</h6>
-                    {{ form.username }}
+                <div class="form-floating mb-2">
+                    {{ form.username|add_class:"form-control"|attr:"placeholder: email"}}
+                    <label for="{{ form.username.id_for_label }}">Email</label>
                 </div>
-                <div class="mb-4">
-                    <h6>Password: </h6>
-                    {{ form.password }}
-                    <h6>
-                        <a href="{% url 'app:authPasswordReset' %}">Forgot your password?</a>
-                    </h6>
+                <div class="form-floating mb-4">
+                    {{ form.password|add_class:"form-control"|attr:"placeholder: password" }}
+                    <label for="{{ form.password.id_for_label }}">Password</label>
                 </div>
+
+                <h6><a href="{% url 'app:authPasswordReset' %}">Forgot your password?</a></h6>
                 
-                <button type="submit" class="btn w-100">Sign In</button>
+                <button type="submit" class="btn w-100">Log In</button>
 
                 <h6>Need an account?
-                    <a href="{% url 'app:authUserRegister' %}">Register</a>
+                    <a href="{% url 'app:authUserRegister' %}">Create Account</a>
                 </h6>
             </div>
         </form>
