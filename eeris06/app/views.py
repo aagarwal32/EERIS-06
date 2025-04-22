@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from django.contrib import messages
 from django.utils import timezone
 from django.urls import reverse, reverse_lazy
+from django.core.mail import send_mail
 from decimal import Decimal, ROUND_HALF_UP
 
 import os, json, base64
@@ -32,6 +33,49 @@ def authUserRegister(request):
             form = CustomUserCreationForm()
 
     return render(request, 'registration/signup.html', {'form': form})
+
+def authPasswordReset(request):
+    if request.method == 'POST':
+        email = request.POST.get('username')
+        user = CustomUser.objects.filter(email=email).first()
+        if user:
+            token = user.generate_password_reset_token()
+            reset_link = request.build_absolute_uri(reverse('app:authPasswordResetUpdate', args=[token]))
+            code =  send_mail(
+                        subject=f"EERIS-06 Password Reset - {user.first_name} {user.last_name}",
+                        message="Your password reset link will expire in 1 hour. Click the link below to reset your password:\n" + reset_link,
+                        from_email=None, # uses Default email address
+                        recipient_list=[email],
+                   )
+            
+            if code == 1:
+                messages.success(request, "Please check your email for the password reset link.")
+            else: 
+                messages.warning(request, "There was a problem sending the reset link via email. Please try again later.")
+
+            return redirect("app:login")
+        else:
+            messages.warning(request, "Email not found!")
+
+    return render(request, 'components/password_reset_email.html')
+
+def authPasswordResetUpdate(request, token):
+    user = CustomUser.objects.filter(reset_token=token).first()
+
+    if not user or user.reset_token_expiry < timezone.now():
+        messages.warning(request, "Invalid or expired password reset link.")
+        return redirect("app:login")
+
+    if request.method == 'POST':
+        new_password = request.POST.get('password')
+        user.set_password(new_password)
+        user.reset_token = None
+        user.reset_token_expiry = None
+        user.save()
+        messages.success(request, "Password reset successfully. Now get back to work!")
+        return redirect("app:login")
+        
+    return render(request, 'components/password_reset_update.html', {'token': token})
 
 @login_required
 def editSubmission(request, submission_id=None):

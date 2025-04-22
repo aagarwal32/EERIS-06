@@ -10,6 +10,8 @@ urlpatterns = [
     path('receipt/extract/', views.ReceiptExtractView.as_view(), name="extract_receipt"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', views.authUserRegister, name='authUserRegister'),
+    path('reset/', views.authPasswordReset, name='authPasswordReset'),
+    path('password-update/<token>/', views.authPasswordResetUpdate, name='authPasswordResetUpdate'),
     path('edit/<int:submission_id>', views.editSubmission, name='editSubmission'),
     path('delete/<int:submission_id>', views.deleteSubmission, name='deleteSubmission'),
     path('process/<int:submission_id>/<str:approve>', views.processSubmission, name='processSubmission'),

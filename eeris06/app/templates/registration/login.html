@@ -30,6 +30,9 @@ EERIS-06 | Login
                 <div class="mb-4">
                     <h6>Password: </h6>
                     {{ form.password }}
+                    <h6>
+                        <a href="{% url 'app:authPasswordReset' %}">Forgot your password?</a>
+                    </h6>
                 </div>
                 
                 <button type="submit" class="btn w-100">Sign In</button>

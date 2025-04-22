@@ -3,7 +3,8 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.validators import RegexValidator
 from django.utils import timezone
 from decimal import Decimal
-from datetime import datetime
+from datetime import datetime, timedelta
+import uuid
 
 
 class CustomUserManager(BaseUserManager):
@@ -28,6 +29,8 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)  # Make email unique
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    reset_token = models.UUIDField(unique=True, null=True, blank=True)
+    reset_token_expiry = models.DateTimeField(blank=True, null=True)
  
     objects = CustomUserManager() # Set default custom manager
     
@@ -36,6 +39,14 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+    
+    def generate_password_reset_token(self):
+        token = uuid.uuid4()
+        self.reset_token_expiry = timezone.now() + timedelta(hours=1)
+        self.reset_token = token
+        self.save(update_fields=["reset_token", "reset_token_expiry"])
+        return str(token)
+
 
 
 # submission holds user, receipt, and creation date.

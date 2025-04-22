@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'rest_framework',
+    'anymail',
     'app',
 ]
 
@@ -134,3 +135,9 @@ AUTH_USER_MODEL = "app.CustomUser"
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
+
+EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+ANYMAIL = {
+    "SENDGRID_API_KEY": "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",
+}
+DEFAULT_FROM_EMAIL = "EERIS-06 <harsha55raj@gmail.com>"
