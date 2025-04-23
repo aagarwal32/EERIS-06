@@ -14,34 +14,33 @@
 </head>
 <body>
       {% if user.is_authenticated %}
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="#">
-                    EERIS-06 
-                    
-                    {% if user.is_superuser %} <button class="btn btn-warning btn-sm" style="border-radius: 1em; font-size: 0.6em;" disabled>supervisor</button> {% endif %}
-                </a>
+                <div class="d-flex align-items-center gap-8">
+                    <a class="navbar-brand" href="{% url 'app:home' %}">
+                        EERIS-06 
+                    </a>
+                    <div>{% if user.is_superuser %} <button class="btn btn-warning btn-sm" style="border-radius: 1em; font-size: 0.7rem; color:black;">supervisor</button> {% endif %}</div>
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto" style="gap: 12px;">
+                    <ul class="d-flex navbar-nav ms-auto align-items-center" style="gap: 12px;">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'app:home' %}">Dashboard</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'app:home' %}">Dashboard</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'app:reportAnalytics'%}">Report & Analytics</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'reportAnalytics' %}active{% endif %}" href="{% url 'app:reportAnalytics' %}">Report & Analytics</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'app:employeeDirectory'%}">Employee Directory</a>
+                            <a class="nav-link {% if request.resolver_match.url_name == 'employeeDirectory' %}active{% endif %}" href="{% url 'app:employeeDirectory' %}">Employee Directory</a>
                         </li>
-                                            
-                        <form action="{% url 'app:logout' %}" method="post" style="display: inline;">
+                            
+                        <form action="{% url 'app:logout' %}" method="post">
                             {% csrf_token %}
-                            <button class="btn btn-danger navbar-btn">Logout</button>
+                            <button class="btn navbar-btn text-danger" id="logout-button">Logout</button>
                         </form>
                     </ul>
                 </div>

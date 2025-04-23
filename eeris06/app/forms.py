@@ -58,5 +58,5 @@ class ReceiptForm(forms.ModelForm):
             'line_items': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter description of line items (optional)\n2 Coffee Mug $8.99\n1 Watch $20.99', 'rows': 3}),
             'total_payment': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter total payment amount (e.g., 29.98)'}),
             'pay_method': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Credit, Debit, Cash, Check, or E-banking'}),
-            'expense_category': forms.Select(attrs={'class': 'form-control',      'style': 'overflow-y: auto;', 'onfocus': 'this.size=5;', 'onblur': 'this.size=1;', 'onchange': 'this.size=1; this.blur();',}),
+            'expense_category': forms.Select(attrs={'class': 'form-control', 'style': 'overflow-y: auto;', 'onfocus': 'this.size=5;', 'onblur': 'this.size=1;', 'onchange': 'this.size=1; this.blur();',}),
         }

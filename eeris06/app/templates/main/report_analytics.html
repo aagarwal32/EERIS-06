@@ -8,25 +8,27 @@ EERIS-06 | Report & Analytics
 {% block content %}
 
 <div class="d-flex flex-wrap justify-content-between align-items-end">
-    <h2 class="mt-4">Expense Report (categorical breakdown)</h2>
+    <h2 class="mt-5">Expense Report (Categorical Breakdown)</h2>
     <form action="{% url 'app:reportAnalytics' %}" method="post" class="d-inline-block">
         {% csrf_token %}
-        <label for="choice" class="form-label">Sort by:</label>
-        <select name="choice" id="choice" onchange="this.form.submit()">
-          <option value="Total" {% if sort == "Total" %} selected {% endif %} >Total</option>
-          <option value="Approved Expenses"  {% if sort == "Approved Expenses" %} selected {% endif %} >Approved Expenses</option>
-          <option value="Declined Expenses"  {% if sort == "Declined Expenses" %} selected {% endif %} >Declined Expenses</option>
-          <option value="Expense Saved"  {% if sort == "Expense Saved" %} selected {% endif %} >Expense Saved</option>
-        </select>
+        <div class="input-group input-group-sm align-items-center" style="min-width: 220px;">
+          <span class="input-group-text bg-light border-0" id="sort-label" style="font-weight: 500;">Sort by</span>
+          <select name="choice" id="choice" class="form-select" aria-label="Sort by" onchange="this.form.submit()">
+            <option value="Total" {% if sort == "Total" %} selected {% endif %} >Total</option>
+            <option value="Approved Expenses"  {% if sort == "Approved Expenses" %} selected {% endif %} >Approved Expenses</option>
+            <option value="Declined Expenses"  {% if sort == "Declined Expenses" %} selected {% endif %} >Declined Expenses</option>
+            <option value="Expense Saved"  {% if sort == "Expense Saved" %} selected {% endif %} >Expense Saved</option>
+          </select>
+        </div>
       </form>      
 </div>
 
 <hr />
 
-<div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
-    <h5 class="mb-1">Total Expenses: <span class="text-primary">${{total_expense}}</span> </h5>
+<div class="d-flex flex-wrap justify-content-around align-items-center mb-4">
     <h5 class="mb-1">Total Approved Expenses: <span class="text-success">${{total_approved_expense}}</span> </h5>
     <h5 class="mb-1">Total Declined Expenses: <span class="text-danger">${{total_declined_expense}}</span> </h5>
+    <h5 class="mb-1">Total Expenses: <span class="text-primary">${{total_expense}}</span> </h5>
     <h5 class="mb-1">Total Expenses Saved: <span class="text-primary">{{total_expense_saved}}%</span> </h5>
 </div>
 

@@ -4,14 +4,14 @@ EERIS-06 | Home
 {% endblock %}
 
 {% block content %}
-<h1 class="mt-2">{{request.user.first_name}}'s Dashboard - Editing {{submission.receipt.receipt_name|truncatechars:20}}</h1>
+<h2 class="mt-5">{{request.user.first_name}}'s Dashboard - Editing {{submission.receipt.receipt_name|truncatechars:20}}</h2>
 <hr />
 
 <form id="editReceiptForm" action="{% url 'app:editSubmission' submission.id %}" method="post" novalidate>
     {% csrf_token %}
 
     {% for field in form %}
-        <div class="mb-2">
+        <div class="mb-2 field-container">
             <label for="{{ field.id_for_label }}" class="form-label"><b>{{ field.label }}</b></label>
             {% if field.errors %}
                 <div class="text-danger">

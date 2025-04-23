@@ -1,18 +1,55 @@
-/* login and signup template styles */
+/* root colors (changes site theme) */
+/* 
+blue: #336699 
+light blue: #0066FF
+green: #336633
+light green: #339900
+*/
+:root {
+    --main-color: #336699;
+    --secondary-color: #0066FF;
+    --background-color: hsl(0, 0%, 98%);
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: "Arial", verdana;;
+}
 
 .logo-color {
-    color: rgb(129, 43, 129);
+    color: var(--main-color);
+}
+
+.navbar-light {
+    background-color: var(--background-color) !important;
+    border-bottom: 5px solid var(--main-color);
+}
+
+.nav-link.active {
+    color: var(--main-color) !important;
+    font-weight: 500;
+}
+
+#logout-button {
+    border: solid 1px hsl(0, 0%, 30%);
+    padding: 1px 10px;
+    background-color: var(--background-color);
+    border-radius: 1rem;
+    font-size: 1rem;
+}
+#logout-button:hover {
+    border-color: red;
 }
 
 .auth-card button{
-   background-color: rgb(133, 58, 133);
+   background-color: var(--main-color);
    font-size: 1.2em;
    color: white;
    margin-bottom: 6px;
 }
 
 .auth-card button:hover{
-    background-color: purple;
+    background-color: var(--secondary-color);
     color: white;
 }
 
@@ -23,12 +60,113 @@
     padding: 5px 5px;
 }
 
+.auth-link {
+    text-decoration: none;
+    color: var(--main-color);
+    border: solid 1px var(--main-color);
+    border-radius: 0.5rem;
+    padding: 8px;
+}
+
+.auth-link:hover {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    background-color: var(--background-color);
+}
+
+.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+.modal-content {
+    border-radius: 1rem;
+}
+
+.card.receipt-info {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 1rem;
+    
+}
+.card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform;
+} 
+.card-hover:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1rem 1.5rem rgba(115, 115, 115, 0.15);
+}
+
+.input-group-text {
+    background-color: #f0f4f7 !important;
+    color: var(--main-color) !important;
+    border-radius: 0.5rem 0 0 0.5rem !important;
+    border: solid 1px black !important;
+}
+.form-select {
+    border-radius: 0 0.5rem 0.5rem 0 !important;
+    border: solid 1px black !important;
+    box-shadow: none !important;
+}
+
+.receipt {
+    background-color: var(--background-color);
+    border: solid 1px black;
+    border-radius: 0.45rem;
+}
+.view-receipt-btn:hover {
+    background-color: hsl(0, 0%, 90%);
+}
+
 #createReceiptForm {
     padding: 12px;
     border: 2px solid black;
     border-radius: 1rem;
     display: none;
     animation: fadeIn 0.3s ease-in-out;
+}
+
+.receipt-button {
+    background-color: var(--main-color);
+    border-radius: 1rem;
+    color: white;
+}
+.receipt-button:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+.form-label {
+    color: black;
+    font-weight: 700;
+}
+.field-container > input {
+    background-color: var(--background-color);
+}
+.field-container > textarea {
+    background-color: var(--background-color);
+}
+.field-container > select {
+    background-color: var(--background-color);
+}
+
+.loader {
+    display: none;
+    border: 2px solid white;
+    border-top: 2px solid var(--main-color);
+    border-radius: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes fadeIn {

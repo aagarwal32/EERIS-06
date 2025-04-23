@@ -2,17 +2,19 @@
     {% if submissions %}
         {% for submission in submissions %}
         <div class="d-flex submission-item justify-content-between align-items-center" style="gap: 8px;">
-            <div class="name" style="width: 200px;"><span class="text-success">{{submission.receipt.receipt_name|truncatechars:20}}</span></div>
+            <div class="name" style="width: 200px;"><span class="logo-color">{{submission.receipt.receipt_name|truncatechars:20}}</span></div>
             <div class="user" style="width: 150px;">By {{submission.user.first_name}} {{submission.user.last_name}}</div>
             <div class="receipt btn-group" role="group" style="width: 275px;">
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewReceiptModal{{submission.id}}"><i class="bi bi-file-text"></i> View Receipt</button>
+                <button type="button" class="btn view-receipt-btn" data-bs-toggle="modal" data-bs-target="#viewReceiptModal{{submission.id}}">
+                  <i class="bi bi-file-text"></i> View Receipt
+                </button>
                 {% if not submission.processed %} 
-                  <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-outline-primary btn-light" style="border: none;">
-                      Edit <i class="bi bi-pen"></i> 
+                  <a href="{% url 'app:editSubmission' submission.id %}" class="btn btn-outline-primary" style="border: none;">
+                      <i class="bi bi-pen"></i> 
                   </a>
 
                    {% if not user.is_superuser or user.id == submission.user.id %}
-                    <button type="button" class="btn btn-outline-danger btn-light" data-bs-toggle="modal" data-bs-target="#deleteReceiptModal{{submission.id}}" style="border: none;"> <i class="bi bi-trash"></i></button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteReceiptModal{{submission.id}}" style="border: none;"> <i class="bi bi-trash"></i></button>
                    {% endif %}
                  {% endif %}
              </div>
@@ -33,7 +35,7 @@
                       </form>
                     </div>
                   {% else %}
-                     <div style="color: rgb(180, 100, 0);">Pending Approval</div>
+                     <div style="color: #CC9900;">Pending Approval</div>
                   {% endif %}
                 {% else %}
                   {% if submission.approved %}
@@ -52,33 +54,36 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <div class="modal-title" id="viewReceiptModalLabel{{submission.id}}">Receipt: {{submission.receipt.receipt_name}}</div>
+                        <div class="modal-title" id="viewReceiptModalLabel{{submission.id}}" style="color: var(--main-color);">
+                          <strong>{{submission.receipt.receipt_name}}</strong></div>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <div><strong>Store:</strong> {{ submission.receipt.store_name }}</div>
+                        <div class="card card-hover receipt-info"><strong>Store</strong> {{ submission.receipt.store_name }}</div>
                         
-                        <div><strong>Date:</strong> {{submission.receipt.receipt_date}}</div>
+                        <div class="card card-hover receipt-info"><strong>Date</strong> {{submission.receipt.receipt_date}}</div>
 
                         {% if submission.receipt.store_phone %}
-                        <div><strong>Phone:</strong> {{ submission.receipt.store_phone }}</div>
+                        <div class="card card-hover receipt-info"><strong>Phone</strong> {{ submission.receipt.store_phone }}</div>
                         {% endif %}
 
-                        <div><strong>Address:</strong> {{ submission.receipt.store_address }}</div>
+                        <div class="card card-hover receipt-info"><strong>Address</strong> {{ submission.receipt.store_address }}</div>
 
                         {% if submission.receipt.store_site %}
-                            <div><strong>Website:</strong> <a href="{{ submission.receipt.store_site }}" target="_blank">{{ submission.receipt.store_site }}</a></div>
+                            <div class="card card-hover receipt-info"><strong>Website</strong> <a href="{{ submission.receipt.store_site }}" target="_blank">{{ submission.receipt.store_site }}</a></div>
                         {% endif %}
 
                         {% if submission.receipt.line_items %}
-                            <div><strong>Items:</strong></div>
-                            <div class="my-2">{{ submission.receipt.line_items|linebreaksbr }}</div>
+                        <div class="card card-hover receipt-info">
+                          <div><strong>Line Items</strong></div>
+                          <div class="my-2">{{ submission.receipt.line_items|linebreaksbr }}</div>
+                        </div>
                         {% endif %}
 
-                        <div><strong>Total Payment:</strong> ${{ submission.receipt.total_payment }}</div>
-                        <div><strong>Payment Method:</strong> {{ submission.receipt.pay_method }}</div>
-                        <div><strong>Expense Category:</strong> {{ submission.receipt.expense_category|title }}</div>
-                        <div><strong>Submitted On:</strong> {{ submission.receipt.created_at|date:"F d, Y H:i" }}</div>
+                        <div class="card card-hover receipt-info"><strong>Total Payment</strong> ${{ submission.receipt.total_payment }}</div>
+                        <div class="card card-hover receipt-info"><strong>Payment Method</strong> {{ submission.receipt.pay_method }}</div>
+                        <div class="card card-hover receipt-info"><strong>Expense Category</strong> {{ submission.receipt.expense_category|title }}</div>
+                        <div class="card card-hover receipt-info"><strong>Submitted On</strong> {{ submission.receipt.created_at|date:"F d, Y H:i" }}</div>
                     </div>
                 </div>
             </div>            

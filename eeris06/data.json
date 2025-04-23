@@ -520,6 +520,14 @@
 },
 {
   "model": "sessions.session",
+  "pk": "6lonectlhnf6wa7lw59tpew0h54ctdih",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBoB0Zcuu8ZmoGZStVAUtqV8e7apAvd_vfef6mRtjWPW5NlnFldVKdOv1uk9JCyA75TuVWdalmXOepd0Qdteqgsz-vh_h1kavlbo_OCjNYBQycQvZCNIcFENnhD6EzPLtoQU39GMZCcSALrDNoAU0D1_gDbqDd7:1u7OxQ:0UPdmxg5pNXi7X6xLkgY6swLuRTUlIMOXsDo1NBAlvs",
+    "expire_date": "2025-05-07T01:31:24.734Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "bq8pnnbv3m9fdd0rhich5my75i3cv0mr",
   "fields": {
     "session_data": ".eJxVjEEOwiAQRe_C2hBoB0Zcuu8ZmoGZStVAUtqV8e7apAvd_vfef6mRtjWPW5NlnFldVKdOv1uk9JCyA75TuVWdalmXOepd0Qdteqgsz-vh_h1kavlbo_OCjNYBQycQvZCNIcFENnhD6EzPLtoQU39GMZCcSALrDNoAU0D1_gDbqDd7:1u52la:zAQ7pishHYGeB_AsqgcX1BuSugLu8zTf5IpNUmBMzhU",
@@ -603,6 +611,8 @@
     "email": "TestUser@gmail.com",
     "first_name": "Test",
     "last_name": "Test",
+    "reset_token": null,
+    "reset_token_expiry": null,
     "groups": [],
     "user_permissions": []
   }
@@ -612,7 +622,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$870000$y01WeDNkxboV5UywijZWPD$aukdvUZzjYSDgJAFdW8G4X6rqisYeeVGVa5t+D5/vY8=",
-    "last_login": "2025-04-17T02:02:19.603Z",
+    "last_login": "2025-04-23T01:31:24.734Z",
     "is_superuser": true,
     "is_staff": true,
     "is_active": true,
@@ -620,6 +630,8 @@
     "email": "Group06@gmail.com",
     "first_name": "Group",
     "last_name": "06",
+    "reset_token": null,
+    "reset_token_expiry": null,
     "groups": [],
     "user_permissions": []
   }
@@ -629,7 +641,7 @@
   "pk": 3,
   "fields": {
     "password": "pbkdf2_sha256$870000$TgfCUjSpDha4eTBacxl1Xr$+qIQW/nMWwWxmO5rL2nUaWNe1SlEkX4MZf/YjaRWEmA=",
-    "last_login": "2025-04-18T00:17:40.289Z",
+    "last_login": "2025-04-22T23:29:50.053Z",
     "is_superuser": false,
     "is_staff": false,
     "is_active": true,
@@ -637,6 +649,27 @@
     "email": "Fang@usf.edu",
     "first_name": "Fang",
     "last_name": "Vader",
+    "reset_token": null,
+    "reset_token_expiry": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "app.customuser",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$P6beH7rwxKPwVAyviA0HAj$IqgV8kkheFxcFzzL3suZJca4Doy+AO+UoYLpD2igeXQ=",
+    "last_login": "2025-04-23T01:29:46.373Z",
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-23T01:27:03.524Z",
+    "email": "aarjun6502@gmail.com",
+    "first_name": "Arjun",
+    "last_name": "Agarwal",
+    "reset_token": null,
+    "reset_token_expiry": null,
     "groups": [],
     "user_permissions": []
   }

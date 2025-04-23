@@ -17,9 +17,9 @@ EERIS-06 | Login
 {% endif %}
 
 <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 shadow-lg" style="width: 500px;">
+    <div class="card p-4 shadow-lg" style="width: 500px; border-radius: 0.5rem;">
         
-        <h1 class="mb-4 logo-color">Log into EERIS-06</h1>
+        <h1 class="mb-4 logo-color">Log into EERIS</h1>
         
         <form method="POST">
             {% csrf_token %}
@@ -28,18 +28,17 @@ EERIS-06 | Login
                     {{ form.username|add_class:"form-control"|attr:"placeholder: email"}}
                     <label for="{{ form.username.id_for_label }}">Email</label>
                 </div>
-                <div class="form-floating mb-4">
+                <div class="form-floating mb-2">
                     {{ form.password|add_class:"form-control"|attr:"placeholder: password" }}
                     <label for="{{ form.password.id_for_label }}">Password</label>
                 </div>
+                <button type="submit" class="btn w-100 mb-4">Log In</button>
 
-                <h6><a href="{% url 'app:authPasswordReset' %}">Forgot your password?</a></h6>
-                
-                <button type="submit" class="btn w-100">Log In</button>
-
-                <h6>Need an account?
-                    <a href="{% url 'app:authUserRegister' %}">Create Account</a>
-                </h6>
+                <div class="d-flex align-items-center" style="gap: 12px;">
+                    <div class="mb-2"><a class="auth-link" href="{% url 'app:authPasswordReset' %}">Forgot Password?</a></div>
+                    <div class="mb-2"><a class="auth-link" href="{% url 'app:authUserRegister' %}">Don't have an account?</a></div>
+                </div>
+                    
             </div>
         </form>
     </div>

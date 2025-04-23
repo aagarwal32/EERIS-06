@@ -1,6 +1,6 @@
-<div class="d-flex flex-wrap justify-content-evenly gap-3 mb-4">
+<div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
     {% for category, totals in data.items %}
-    <div class="card p-2 mb-3" style="width: 300px; flex: 0 1 auto;">
+    <div class="card card-hover receipt-info p-2 mb-3" style="width: 300px; flex: 0 1 auto;">
         <div class="card-body">
             <div class="card-title">
                 <h4>
@@ -10,13 +10,17 @@
             <hr />
             <div class="container px-0">
                 {% for key, value in totals.items %}
-                <p class="mb-1">
+
                     {% if key == "Expense Saved" %}
-                        <strong>{{ key }}</strong> {{ value }}% 
+                        <div style="font-size: large;">{{ key }} <div class="text-primary">{{ value }}%</div></div>
+                    {% elif key == "Approved Expenses" %}
+                        <div style="font-size: large;">{{ key }} <div class="text-success">${{ value }}</div></div>
+                    {% elif key == "Declined Expenses" %}
+                        <div style="font-size: large;">{{ key }} <div class="text-danger">${{ value }}</div></div>
                     {% else %}
-                        <strong>{{ key }}</strong> ${{ value }} 
+                        <div style="font-size: large;">{{ key }} <div class="text-primary">${{ value }}</div></div>
                     {% endif %}
-                </p>
+
                 {% endfor %}
             </div>
         </div>
