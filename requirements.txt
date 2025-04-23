@@ -9,7 +9,6 @@ distro==1.9.0
 Django==5.1.6
 django-anymail==13.0
 django-bootstrap5==24.3
-django-widget-tweaks==1.5.0
 djangorestframework==3.16.0
 h11==0.14.0
 httpcore==1.0.8

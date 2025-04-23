@@ -7,22 +7,6 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ("email", "first_name", "last_name", "password1", "password2")
 
-    def __init__(self, *args, **kwargs):
-        kwargs.setdefault('label_suffix', '')
-        super().__init__(*args, **kwargs)
-        placeholders = {
-            'email': 'Enter email',
-            'first_name': 'Enter first name',
-            'last_name': 'Enter last name',
-            'password1': 'Enter password',
-            'password2': 'Re-enter password',
-        }
-        for field_name, placeholder in placeholders.items():
-            self.fields[field_name].widget.attrs.update({
-                'class':'form-control',
-                'placeholder':placeholder,
-            })  
-
 
 class SubmissionForm(forms.ModelForm):
     class Meta:

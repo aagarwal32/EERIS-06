@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load widget_tweaks %}
 
 {% block title %}
 EERIS-06 | Login
@@ -9,7 +8,7 @@ EERIS-06 | Login
 
 {% if messages %}
 {% for message in messages %}
-    <div class="alert alert-success alert-dismissible" role="alert">
+    <div class="alert alert-success alert-dismissible mt-2" role="alert">
         {{ message }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -24,20 +23,18 @@ EERIS-06 | Login
         <form method="POST">
             {% csrf_token %}
             <div class="auth-card">
-                <div class="form-floating mb-2">
-                    {{ form.username|add_class:"form-control"|attr:"placeholder: email"}}
-                    <label for="{{ form.username.id_for_label }}">Email</label>
+                <div class="mb-2">
+                    <label for="{{ form.username.id_for_label }}"><strong>Email</strong><span style="color: red;"> *</span></label>
+                    {{ form.username }}
                 </div>
-                <div class="form-floating mb-2">
-                    {{ form.password|add_class:"form-control"|attr:"placeholder: password" }}
-                    <label for="{{ form.password.id_for_label }}">Password</label>
+                <div class="mb-1">
+                    <label for="{{ form.password.id_for_label }}"><strong>Password</strong><span style="color: red;"> *</span></label>
+                    {{ form.password }}
                 </div>
-                <button type="submit" class="btn w-100 mb-4">Log In</button>
-
-                <div class="d-flex align-items-center" style="gap: 12px;">
-                    <div class="mb-2"><a class="auth-link" href="{% url 'app:authPasswordReset' %}">Forgot Password?</a></div>
-                    <div class="mb-2"><a class="auth-link" href="{% url 'app:authUserRegister' %}">Don't have an account?</a></div>
-                </div>
+                <div class="mb-4"><a href="{% url 'app:authPasswordReset' %}" style="text-decoration: none;">Forgot your password?</a></div>
+                <button type="submit" class="btn w-100 mb-2">Log In</button>
+                    
+                <div class="mb-2">Need an account? <a href="{% url 'app:authUserRegister' %}" style="text-decoration: none;">Register</a></div>
                     
             </div>
         </form>

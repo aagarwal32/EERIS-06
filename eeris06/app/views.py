@@ -275,7 +275,8 @@ class ReceiptExtractView(APIView):
         Return the extracted data as a JSON object with these fields:
         receipt_name (Format: [store name]-receipt-[number] where number is circled in the top right of the receipt), 
         receipt_date (Format: YYYY-MM-DD), store_name, store_phone (Format: Digits only), store_address,
-        store_site (Format: Link to store website), total_payment, pay_method (Format: Choose either Cash, Credit, Debit, Check, E-banking),
+        store_site (Format: Link to store website), total_payment (Format: Digits only for example: 29.90 and ignore currency symbols), 
+        pay_method (Format: Choose either Cash, Credit, Debit, Check, E-banking),
         line_items (Format: [Item Quantity] [Item Name] [Item Price]. Only provide price and/or quantity if available. Must be plain text and each item on new line), 
         expense_category. Categories: {', '.join([c for c, _ in Receipt.CATEGORY_CHOICES])}.
         If any field is missing or unreadable, return null.

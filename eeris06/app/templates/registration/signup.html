@@ -13,59 +13,64 @@ EERIS-06 | Register User
             <form method="POST">
                 {% csrf_token %}
                 <div class="auth-card">
-                    <div class="form-floating mb-2">
-                        {{ form.email }}
-                        {{ form.email.label_tag }}
+                    <div class="mb-2">
+                        
+                        <label for="{{ form.email.id_for_label }}"><strong>Email</strong><span style="color: red;"> *</span></label>
                         {% if form.email.errors %}
                             <div class="text-danger">
                                 {{ form.email.errors }}
                             </div>
                         {% endif %}
+                        {{ form.email }}
                     </div>
             
-                    <div class="form-floating mb-2">
-                        {{ form.first_name }}
-                        {{ form.first_name.label_tag }}
+                    <div class="mb-2">
+        
+                        <label for="{{ form.first_name.id_for_label }}"><strong>First Name</strong><span style="color: red;"> *</span></label>
                         {% if form.first_name.errors %}
                             <div class="text-danger">
                                 {{ form.first_name.errors }}
                             </div>
                         {% endif %}
+                        {{ form.first_name }}
                     </div>
             
-                    <div class="form-floating mb-2">
-                        {{ form.last_name }}
-                        {{ form.last_name.label_tag }}
+                    <div class="mb-2">
+                        
+                        <label for="{{ form.last_name.id_for_label }}"><strong>Last Name</strong><span style="color: red;"> *</span></label>
                         {% if form.last_name.errors %}
                             <div class="text-danger">
                                 {{ form.last_name.errors }}
                             </div>
                         {% endif %}
+                        {{ form.last_name }}
                     </div>
             
-                    <div class="form-floating mb-2">
-                        {{ form.password1 }}
-                        {{ form.password1.label_tag }}
+                    <div class="mb-2">
+                        
+                        <label for="{{ form.password1.id_for_label }}"><strong>Password</strong><span style="color: red;"> *</span></label>
                         {% if form.password1.errors %}
                             <div class="text-danger">
                                 {{ form.password1.errors }}
                             </div>
                         {% endif %}
+                        {{ form.password1 }}
                     </div>
             
-                    <div class="form-floating mb-2">
-                        {{ form.password2 }}
-                        {{ form.password2.label_tag }}
+                    <div class="mb-2">
+                        
+                        <label for="{{ form.password2.id_for_label }}"><strong>Confirm Password</strong><span style="color: red;"> *</span></label>
                         {% if form.password2.errors %}
                             <div class="text-danger">
                                 {{ form.password2.errors }}
                             </div>
                         {% endif %}
+                        {{ form.password2 }}
                     </div>
             
-                    <button type="submit" class="btn w-100 mb-4">Create Account</button>
+                    <button type="submit" class="btn w-100 mb-2 mt-2">Create Account</button>
 
-                    <div class="mb-2"><a class="auth-link" href="{% url 'app:login' %}">Already have an account?</a></div>
+                    <div class="mb-2">Already have an account? <a href="{% url 'app:login' %}" style="text-decoration: none;">Log In</a></div>
 
                 </div>
             </form>

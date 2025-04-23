@@ -520,10 +520,10 @@
 },
 {
   "model": "sessions.session",
-  "pk": "6lonectlhnf6wa7lw59tpew0h54ctdih",
+  "pk": "7dq6w9u0d9eiijncsrwr2xer9s99jykp",
   "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2hBoB0Zcuu8ZmoGZStVAUtqV8e7apAvd_vfef6mRtjWPW5NlnFldVKdOv1uk9JCyA75TuVWdalmXOepd0Qdteqgsz-vh_h1kavlbo_OCjNYBQycQvZCNIcFENnhD6EzPLtoQU39GMZCcSALrDNoAU0D1_gDbqDd7:1u7OxQ:0UPdmxg5pNXi7X6xLkgY6swLuRTUlIMOXsDo1NBAlvs",
-    "expire_date": "2025-05-07T01:31:24.734Z"
+    "session_data": ".eJxVjM0OwiAQhN-FsyGU8rN49O4zEHZZpWogKe3J-O62SQ-azGm-b-YtYlqXEtfOc5yyOAsrTr8dJnpy3UF-pHpvklpd5gnlrsiDdnltmV-Xw_07KKmXba2C9oazpcEoHNBhAgow3oIBRzAGH2zWW5AVZmarDSgavdEBgDU48fkC0043Mw:1u7eLy:dxTraFuScXz7HzwySGkB2XbgATiJpOb8HszgPjDxQKA",
+    "expire_date": "2025-05-07T17:57:46.154Z"
   }
 },
 {
@@ -622,7 +622,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$870000$y01WeDNkxboV5UywijZWPD$aukdvUZzjYSDgJAFdW8G4X6rqisYeeVGVa5t+D5/vY8=",
-    "last_login": "2025-04-23T01:31:24.734Z",
+    "last_login": "2025-04-23T17:55:33.781Z",
     "is_superuser": true,
     "is_staff": true,
     "is_active": true,
@@ -641,7 +641,7 @@
   "pk": 3,
   "fields": {
     "password": "pbkdf2_sha256$870000$TgfCUjSpDha4eTBacxl1Xr$+qIQW/nMWwWxmO5rL2nUaWNe1SlEkX4MZf/YjaRWEmA=",
-    "last_login": "2025-04-22T23:29:50.053Z",
+    "last_login": "2025-04-23T02:17:17.151Z",
     "is_superuser": false,
     "is_staff": false,
     "is_active": true,
@@ -668,6 +668,25 @@
     "email": "aarjun6502@gmail.com",
     "first_name": "Arjun",
     "last_name": "Agarwal",
+    "reset_token": "2587ead9-f169-4c0c-815d-ede39a15744f",
+    "reset_token_expiry": "2025-04-23T18:22:46.102Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "app.customuser",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$FhxG5stdbCmVag2QBY05Vx$uTK7SLDzlqMoY02nDrNGtamZCrJwFngVpmwWIRZHFS0=",
+    "last_login": "2025-04-23T17:57:46.153Z",
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-23T17:17:42.543Z",
+    "email": "eerisemployee@gmail.com",
+    "first_name": "Test",
+    "last_name": "User",
     "reset_token": null,
     "reset_token_expiry": null,
     "groups": [],
@@ -692,7 +711,7 @@
     "user": 1,
     "receipt": 2,
     "approved": false,
-    "processed": false,
+    "processed": true,
     "created_at": "2025-02-15T18:17:23.136Z"
   }
 },
@@ -738,6 +757,105 @@
     "approved": false,
     "processed": false,
     "created_at": "2025-04-18T00:50:00.213Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 11,
+  "fields": {
+    "user": 5,
+    "receipt": 10,
+    "approved": false,
+    "processed": true,
+    "created_at": "2025-04-23T17:34:45.218Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 12,
+  "fields": {
+    "user": 5,
+    "receipt": 11,
+    "approved": true,
+    "processed": true,
+    "created_at": "2025-04-23T17:38:21.270Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 13,
+  "fields": {
+    "user": 5,
+    "receipt": 12,
+    "approved": false,
+    "processed": true,
+    "created_at": "2025-04-23T17:48:40.254Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 14,
+  "fields": {
+    "user": 5,
+    "receipt": 13,
+    "approved": true,
+    "processed": true,
+    "created_at": "2025-04-23T17:51:23.242Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 15,
+  "fields": {
+    "user": 5,
+    "receipt": 14,
+    "approved": true,
+    "processed": true,
+    "created_at": "2025-04-23T17:53:28.499Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 16,
+  "fields": {
+    "user": 5,
+    "receipt": 15,
+    "approved": true,
+    "processed": true,
+    "created_at": "2025-04-23T17:55:04.181Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 17,
+  "fields": {
+    "user": 5,
+    "receipt": 16,
+    "approved": false,
+    "processed": false,
+    "created_at": "2025-04-23T18:00:46.746Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 18,
+  "fields": {
+    "user": 5,
+    "receipt": 17,
+    "approved": false,
+    "processed": false,
+    "created_at": "2025-04-23T18:02:21.716Z"
+  }
+},
+{
+  "model": "app.submission",
+  "pk": 19,
+  "fields": {
+    "user": 5,
+    "receipt": 18,
+    "approved": false,
+    "processed": false,
+    "created_at": "2025-04-23T18:03:27.314Z"
   }
 },
 {
@@ -840,6 +958,159 @@
     "total_payment": "20.00",
     "pay_method": "Credit",
     "expense_category": "employee wellness"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 10,
+  "fields": {
+    "receipt_name": "Great Clips-receipt-2",
+    "receipt_date": "2025-02-27",
+    "store_name": "Great Clips",
+    "store_phone": "8139715222",
+    "store_address": "City Plaza at Tampa Palms, Tampa, FL 33647",
+    "store_site": "https://www.greatclips.com",
+    "created_at": "2025-04-23T17:34:45.212Z",
+    "line_items": "1 Haircut 19.00\r\n1 USF + HCC STUDENTS W/ID -2.00\r\n1 Charged tip for Keyona 3.00",
+    "total_payment": "20.00",
+    "pay_method": "Credit",
+    "expense_category": "employee wellness"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 11,
+  "fields": {
+    "receipt_name": "Galloping Gallery-receipt-71",
+    "receipt_date": "2018-06-13",
+    "store_name": "Galloping Gallery",
+    "store_phone": "6666420690",
+    "store_address": "Galloping Ave, Florida, 33647",
+    "store_site": "",
+    "created_at": "2025-04-23T17:38:21.268Z",
+    "line_items": "1 Where There's Trouble DNC-P01 Print DaniCojo $2.00\r\n10 Reg(WS) 11x17 Borderless $20.00\r\n1 Miraculous Ladybug & Cat Noir DNC-P03 Print DaniCojo $1.25\r\n10 Reg(WS) 8.5x11 Borderless $12.25",
+    "total_payment": "62.93",
+    "pay_method": "Credit",
+    "expense_category": "events"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 12,
+  "fields": {
+    "receipt_name": "Target-receipt-82",
+    "receipt_date": "2025-04-23",
+    "store_name": "Target",
+    "store_phone": "8135552480",
+    "store_address": "1525 E Fowler Ave, Tampa, FL 33612",
+    "store_site": "https://www.target.com",
+    "created_at": "2025-04-23T17:48:40.252Z",
+    "line_items": "2 Milk 5.99\r\n1 Bread 2.49\r\n1 Eggs 3.29\r\n3 Apples 0.99\r\n1 Toothpaste 2.99\r\n1 Shampoo 6.99\r\n2 Chips 3.25",
+    "total_payment": "47.35",
+    "pay_method": "Debit",
+    "expense_category": "food"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 13,
+  "fields": {
+    "receipt_name": "BestBuy-receipt-92",
+    "receipt_date": "2025-04-23",
+    "store_name": "BestBuy",
+    "store_phone": "4075559821",
+    "store_address": "8350 S Orange Blossom Trail, Orlando, FL 32809",
+    "store_site": "https://www.bestbuy.com",
+    "created_at": "2025-04-23T17:51:23.241Z",
+    "line_items": "1 External Hard Drive 79.99\r\n1 Wireless Keyboard 49.99\r\n2 HDMI Cable 12.50\r\n1 Laptop Sleeve 24.99\r\n1 Webcam 54.33",
+    "total_payment": "246.80",
+    "pay_method": "E-banking",
+    "expense_category": "equipment"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 14,
+  "fields": {
+    "receipt_name": "Zoom-receipt-05",
+    "receipt_date": "2025-04-23",
+    "store_name": "Zoom Video Communications",
+    "store_phone": "8887999666",
+    "store_address": "55 Almaden Blvd, San Jose, CA 95113",
+    "store_site": "https://www.zoom.us",
+    "created_at": "2025-04-23T17:53:28.495Z",
+    "line_items": "1 Zoom Pro Annual Subscription 149.99",
+    "total_payment": "149.99",
+    "pay_method": "Credit",
+    "expense_category": "software"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 15,
+  "fields": {
+    "receipt_name": "UnitedAirlines-receipt-34",
+    "receipt_date": "2025-04-23",
+    "store_name": "United Airlines",
+    "store_phone": "8008648331",
+    "store_address": "233 S Wacker Dr, Chicago, IL 60606",
+    "store_site": "https://www.united.com",
+    "created_at": "2025-04-23T17:55:04.180Z",
+    "line_items": "1 Round-Trip Flight Ticket (Tampa to Chicago) 379.00\r\n1 Checked Baggage Fee 33.60",
+    "total_payment": "412.60",
+    "pay_method": "Debit",
+    "expense_category": "travel"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 16,
+  "fields": {
+    "receipt_name": "UPS-receipt-58",
+    "receipt_date": "2025-04-23",
+    "store_name": "UPS Store",
+    "store_phone": "2135556271",
+    "store_address": "1201 S Figueroa St, Los Angeles, CA 90015",
+    "store_site": "https://www.theupsstore.com",
+    "created_at": "2025-04-23T18:00:46.743Z",
+    "line_items": "1 Package Shipping (2-Day Delivery) 39.75\r\n1 Packaging Box Medium 8.50\r\n1 Tape Roll 5.00\r\n1 Handling Fee 10.00",
+    "total_payment": "63.25",
+    "pay_method": "Credit",
+    "expense_category": "shipping & delivery"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 17,
+  "fields": {
+    "receipt_name": "Marriott-receipt-23",
+    "receipt_date": "2025-04-23",
+    "store_name": "Marriott Hotels",
+    "store_phone": "8005354028",
+    "store_address": "1001 Broadway, Nashville, TN 37203",
+    "store_site": "https://www.marriott.com",
+    "created_at": "2025-04-23T18:02:21.715Z",
+    "line_items": "3 Nights Stay - Standard Room 795.00\r\nDaily Wi-Fi Access 30.00\r\nRoom Service - Breakfast 70.40",
+    "total_payment": "895.40",
+    "pay_method": "E-banking",
+    "expense_category": "events"
+  }
+},
+{
+  "model": "app.receipt",
+  "pk": 18,
+  "fields": {
+    "receipt_name": "Canva-receipt-12",
+    "receipt_date": "2025-04-23",
+    "store_name": "Canva",
+    "store_phone": "8552289195",
+    "store_address": "110 Corcoran St, Durham, NC 27701 (Remote Office)",
+    "store_site": "https://www.canva.com",
+    "created_at": "2025-04-23T18:03:27.311Z",
+    "line_items": "1 Canva Pro Annual Subscription 119.40",
+    "total_payment": "119.40",
+    "pay_method": "Credit",
+    "expense_category": "marketing"
   }
 }
 ]
