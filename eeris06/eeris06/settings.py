@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,8 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pe_vo(87wk_1==jnra-95o_iy@(xr9$97^#w5426v#xnis^y(y'
-OPENAI_API_KEY='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'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+OPENAI_API_KEY=os.environ.get("OPENAI_API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -138,6 +139,6 @@ AUTHENTICATION_BACKENDS = [
 
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 ANYMAIL = {
-    "SENDGRID_API_KEY": "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",
+    "SENDGRID_API_KEY": os.environ.get("SENDGRID_API_KEY"),
 }
 DEFAULT_FROM_EMAIL = "EERIS-06 <harsha55raj@gmail.com>"
